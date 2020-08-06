@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>guhan.me</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head><body>
+        <header class="site-header">
+    <div class="wrapper"><a class="site-title" rel="author" href="/">&lt;guhan/&gt;</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+  
+          <div class="trigger">
+            
+              <a class="page-link" href="https://guhan62.github.io/blogs/">Blog</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/portfolio/HariGuhan_CV.pdf">Portfolio</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/reads/">Reads</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/about/">About</a>
+            
+          </div>
+        </nav>
+    </div>
+  </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+
+<article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title p-name">[Guide] NextCloud on Ubuntu 18.04</h1>
+    <p class="post-meta">
+      9 Mins Read //
+      <time class="dt-published">Jul 3, 2020 //</time>&nbsp;
+    </p>
+  </header>
+
+  <div class="post-content blog-post">
+      <h1 id="0-nextcloud-whats-that">0. NextCloud, what&rsquo;s that?</h1>
+<p><em>If you are not interested to read the intro -</em>
+<a href="#1-the-guide-to-setting-up">Skip to the Guide</a></p>
+<p><a href="https://nextcloud.com/">NextCloud</a>, is a fork of <a href="https://owncloud.org/">OwnCloud</a>   - being a suite of client-server software for creating and using file hosting services. Similar to
+Google Drive or DropBox where one can store Documents, photos and can share it with family and friends.  Nextcloud is free and open-source which allows the client to be in control of their data and files, and getting rid of third-party sites that offer the similar services. <a href="https://en.wikipedia.org/wiki/Nextcloud">Nextcloud Wiki</a>.
+Nextcloud is a very vibrant community, and the application being modular the administrator can install tons of plugins from the <a href="https://apps.nextcloud.com/">Nextcloud App Store</a> that can help the nextcloud clients harness the power of self-hosted cloud services rather than third party services.</p>
+<h2 id="why-do-i-need-it">Why do I need it?</h2>
+<p>The question is really a tough one, when services are provided for free why bother pay for one. For me it boils down to one simple reason privacy and control. But you can argue,</p>
+<ul>
+<li>Server maintenance is tough and can be insecure if not set-up right initially.</li>
+<li>Application security can be compromised.</li>
+</ul>
+<blockquote>
+<p><strong>“Privacy isn’t about something to hide. Privacy is about something to protect. And that’s who you are. That’s what you believe in. That’s who you want to become. Privacy is the right to the self. Privacy is what gives you the ability to share with the world who you are on your own terms.”</strong></p>
+<p>-Edward Snowden</p>
+</blockquote>
+<p>You may not hide anything today, but you are exposing your habits, behaviour to every single trackers on these services. Google does claim that they do collect information from services that you are using and do not use it for <a href="https://policies.google.com/privacy">any marketing/promotional services</a> and only to improve their services for you which is good, but that is a lot of data collected on you which can provide you relevant <a href="https://policies.google.com/privacy#whycollect">ad experiences</a>.</p>
+<p>This puts you on a path, where your behaviour begins to be controlled by external factors and decisions. We are completely hooked to digital services that is easy to understand from the usage of services, history to build a profile and be easily able to predict your behaviour.</p>
+<h2 id="choose-your-hero-vpc">Choose your Hero [VPC]!</h2>
+<p>There are multiple good Cloud services,</p>
+<ul>
+<li><a href="https://www.vultr.com/?ref=8035292">Vultr</a></li>
+<li><a href="https://upcloud.com/">upCloud</a></li>
+<li><a href="https://www.digitalocean.com/">DigitalOcean</a>, <a href="https://aws.amazon.com">AWS</a>, <a href="https://www.linode.com/">Linode</a></li>
+<li>etc &hellip;</li>
+</ul>
+<p>These vendors are good and used by many tech enthusiasts and companies.<br>
+I personally use <a href="https://www.vultr.com/?ref=8035292">Vultr</a>, because it sounds cool!  <strong>⚠️Affiliate Link⚠️</strong> 👉<a href="https://www.vultr.com/?ref=8035292">Vultr</a></p>
+<p><em>After you give this post a read and planning to sign up for Vultr, do click on the link.</em><br>
+<strong>Virtual Cloud, can fuel your side-projects and hackathon projects for any web-application or services</strong>. Once your idea is evolved - Host and share it. Feedback and ideas from other devs, make you a better developer. I have an Ubuntu server with the basic 5$ plan which is reasonable as of now.</p>
+<h2 id="prerequisites">Prerequisites:</h2>
+<p>This guide requires two essential steps, in a VPC. Guide being targeted for Ubuntu 18.04 users, it recommends setting up your VPC with basic admin uilities like SSH, Root/Users and Firewall.</p>
+<ul>
+<li>
+<p><strong>VPC Secure Setup</strong> - Initial Secure configuration is vital for any VPC. <a href="https://www.vultr.com/docs/initial-secure-server-configuration-of-ubuntu-18-04">Refer Vultr Doc</a></p>
+</li>
+<li>
+<p><strong>LAMP Stack</strong> - Nextcloud is a php application so the easiest stack to mount our application on would be the LAMP stack. <a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04" title="DigitalOcean : LAMP Stack setup on Ubuntu 18.04">Refer DigitalOcean Guide on LAMP</a></p>
+</li>
+<li>
+<p><strong>(Optional) DNS Record</strong> - Any instance of hosted web-application that is publicly accessible with data flowing from client/server requires secured transport. For this we need to enable SSL encryption on our Server for the Nextcloud application. Nextloud offers <a href="https://docs.nextcloud.com/server/12/admin_manual/installation/source_installation.html#enabling-ssl-label">self-signed SSL certificates</a> they are not good being on a public domain as they are comparitively weak. So it is better to go for commercial vendors (from Domain vendors) or using <a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a>, which offers a free trusted SSL certificate for your server.</p>
+</li>
+</ul>
+<hr>
+<h1 id="1-the-guide-to-setting-up">1. The Guide to setting up!</h1>
+<p><strong>Ensure basic <a href="https://www.vultr.com/docs/initial-secure-server-configuration-of-ubuntu-18-04">VPC setup</a> is completed</strong>
+Host being a Ubuntu 18.04 (Linux platform).</p>
+<h3 id="php-deps">PHP Deps</h3>
+<p>php is a very popular scripting language suited for web-development. Many popular applications like Wordpress, Drupal, Facebook use Php as their back-end. Nextcloud is a php application. Installing <code>php 7.2</code>  latest and necessary php packages for Nextcloud is vital for functioning.</p>
+<ul>
+<li>Installing php and additional pachages</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get install libapache2-mod-php7.2
+sudo apt-get install php7.2-gd php7.2-json php7.2-mysql php7.2-curl php7.2-mbstring
+sudo apt-get install php7.2-intl php-imagick php7.2-xml php7.2-zip
+</code></pre></div><ul>
+<li>The base packages for nextcloud core are provided by <code>libapache2-mod-php7.2</code>, having the following packages,</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">bcmath bz2 calendar Core ctype date dba dom ereg exif fileinfo filter ftp gettext
+<span class="nb">hash</span> iconv libxml mhash openssl pcre Phar posix Reflection session shmop SimpleXML
+soap sockets SPL standard sysvmsg sysvsem sysvshm tokenizer wddx xmlreader xmlwriter zlib .
+</code></pre></div><p><a href="https://docs.nextcloud.com/server/15/admin_manual/installation/source_installation.html#prerequisites-label">Refer NextCloud PHP Prerequisites</a></p>
+<h2 id="database-for-nextcloud">Database for NextCloud</h2>
+<p>Let&rsquo;s set up a Nextcloud user and a database Nextcloud exclusively for our Nextcloud Application.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo mysql -u root -p
+
+CREATE DATABASE nextcloud<span class="p">;</span>
+
+CREATE USER <span class="s1">&#39;nextcloud&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;PASSWORD&#39;</span><span class="p">;</span>
+GRANT ALL PRIVILEGES ON nextcloud.* TO <span class="s1">&#39;nextcloud&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+
+FLUSH PRIVILEGES<span class="p">;</span>
+<span class="se">\q</span>
+</code></pre></div><h2 id="installing-nextcloud-on-server">Installing Nextcloud on server</h2>
+<p>Web Servers, serve content from a root folder. Similar to when you start a localhost with a web-framework or file-sharing network in your company or college. You can browse all content within the directories that have permissions. In our case the top-level directory is <code>/var/www</code> which serves as the document root for Apache HTTP server.</p>
+<p>For good examples on Virtual Hosts refer to this <a href="https://httpd.apache.org/docs/2.4/vhosts/examples.html" title="Apache DOCS : vHost examples">doc</a>.<br>
+Virtual hosts are clones of the hosts with different virtual addresses but point to the address requested by a client. Now let&rsquo;s set up our site directory and set permissions.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># Link can be outdated you can go to link below for the active link</span>
+<span class="c1"># https://nextcloud.com/install/#instructions-server</span> 
+
+wget https://download.nextcloud.com/server/releases/nextcloud-19.0.0.zip -O ~/Downloads
+unzip ~/Downloads/nextcloud-19.0.0.zip
+
+<span class="nb">cd</span> /var/www
+sudo mkdir nextcloud
+sudo mv ~/Downloads/nextcloud-19.0.0/* /var/www/nextcloud/
+sudo chown -R <span class="nv">$USER</span>:<span class="nv">$USER</span> /var/www/nextcloud
+sudo chmod -R <span class="m">755</span> /var/www
+</code></pre></div><p>The ownership is set to user-level, for the application to access it&rsquo;s content at a user level and not write or exec malicious code without priviliges.
+If you have trouble with setting directory permissions 😅, consider a <a href="https://chmod-calculator.com/" title="Chmod Calculator">chmod calculator</a>.</p>
+<p>Let&rsquo;s configure our Firewall first, so that Heimdall can really guard the gateway</p>
+<div class="highlight"><pre class="chroma"><code class="language-Terminfo" data-lang="Terminfo"><span class="nt">vultr@vpc:~$</span><span class="na"> sudo ufw app list
+</span><span class="na">Available applications:
+</span><span class="na">	Apache
+</span><span class="na">	Apache Full
+</span><span class="na">	Apache Secure
+</span><span class="na">	OpenSSH
+</span></code></pre></div><p>The above applications indicate they require firewall permissions. Now <code>Apache Full</code> is the recommended profile as it enables both HTTPS/HTTP traffic over pors <code>80</code> and <code>443</code>.<br>
+Let&rsquo;s allow the &lsquo;Apache Full&rsquo; cpnfiguration.<br>
+<code>sudo ufw allow 'Apache Full'</code><br>
+You can check the status of your firewall with,<br>
+<code>sudo ufw status</code></p>
+<p>It will include Apache Full as an active profile on your Firewall.</p>
+<h2 id="apache-webserver-the-gatekeeper">Apache WebServer The Gatekeeper!</h2>
+
+<figure class="blog-figure">
+    
+        <img src="./Apache_Heimdall_proc.jpeg" 
+        alt="Image Credits WallpaperCave &amp; WikiMedia Commons" />
+    
+
+    
+    <figcaption>
+        
+            <h4>Apache Heimdall</h4>
+        
+        <p>Image Credits WallpaperCave &amp; WikiMedia Commons
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>Now we have setup the structure of our nextcloud application, and now let&rsquo;s fortify it.
+Virtual Hosts are multiple entry points to the same location. Imagine Heimdall as Apache and each entry-point into Asgard is a virtual host.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># Default Config /etc/apache2/sites-available/example.com.conf</span>
+
+sudo nano /etc/apache2/sites-available/nextcloud.conf
+</code></pre></div><ul>
+<li>Now writing the Apache configuration for our nextcloud instance, here the guide recommends getting a domain name for cheap on namecheap.com, name.com or godaddy.com rather than self-signed SSL certificates, thought self-signed are easy they are good in a LAN or a local setting not suitable over a Cloud setting, as Apache ships with a default SSL certificate If you are willing to go ahead with a domain name it would be easier for <strong>Let&rsquo;s Encrypt</strong> to issue certificates that are reliable and free.</li>
+</ul>
+<h3 id="default-ssl">Default SSL</h3>
+<ul>
+<li>This path is the default SSL, write-up a configuration for NextCloud on Apache Sites
+<pre><code>sudo nano /etc/apache2/sites-available/nextcloud.conf  
+</code></pre></li>
+<li>Copy paste the following configuration
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">Alias /nextcloud &#34;/var/www/nextcloud/&#34;
+<span class="nt">&lt;Directory</span> <span class="err">/var/www/nextcloud</span><span class="nt">/&gt;</span>
+Options +FollowSymlinks
+AllowOverride All
+<span class="nt">&lt;IfModule</span> <span class="err">mod_dav.c</span><span class="nt">&gt;</span>
+    Dav off
+<span class="nt">&lt;/IfModule&gt;</span>
+SetEnv HOME /var/www/nextcloud
+SetEnv HTTP_HOME /var/www/nextcloud
+<span class="nt">&lt;/Directory&gt;</span>
+</code></pre></div></li>
+<li>Enable the site configuration for Nextcloud and rewrite the Apache binaries, and also enable the SSL module for Apache and enable the default-ssl config to allow https traffic via defaul SSL certificate
+<pre><code>sudo a2ensite nextcloud
+sudo a2enmod rewrite headers env dir mime
+sudo a2enmod ssl
+sudo a2ensite default-ssl
+sudo systemctl restart apache2
+      
+</code></pre></li>
+</ul>
+<h3 id="lets-encrypt-provided-ssl-certificates">Let&rsquo;s Encrypt provided SSL certificates</h3>
+<ul>
+<li>
+<p>Assuiming <code>my_domain</code> is assigned with an A record with correct key/value pairs of the public IP from your Vultr Dashboard is setup with your domain vendor.</p>
+</li>
+<li>
+<p>If setting up with a prcured domain <code>my_domain</code>, then open up the configuration file</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo nano /etc/apache2/sites-available/nextcloud.conf
+</code></pre></div></li>
+<li>
+<p>Paste the following configuration</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;VirtualHost</span> <span class="err">*:80</span><span class="nt">&gt;</span>
+DocumentRoot /var/www/nextcloud
+ServerName my_domain
+Redirect permanent / https://my_domain/
+<span class="nt">&lt;Directory</span> <span class="err">/var/www/nextcloud</span><span class="nt">&gt;</span>
+    Options +FollowSymlinks
+    AllowOverride All
+    <span class="nt">&lt;IfModule</span> <span class="err">mod_dav.c</span><span class="nt">&gt;</span>
+        Dav off
+<span class="nt">&lt;/IfModule&gt;</span>
+<span class="nt">&lt;/Directory&gt;</span>
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div></li>
+<li>
+<p>Restart Apache after enabling the site-configration and rewriting Apache Binaries,</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo a2ensite nextcloud
+sudo a2enmod rewrite headers env dir mime
+sudo systemctl restart apache2	
+</code></pre></div></li>
+</ul>
+<p>Let&rsquo;s break few of the jargon,</p>
+<ul>
+<li><code>Options +FollowSymLinks</code> - Imagine you have a Media Network and you have a neat setup of your media folders in your home folder would you consider to move it around to <code>/var/www/nextcloud</code> - No Way - Just create a softlink of the directory and point in your application now the WebServer can follow the path to serve Media. <a href="https://httpd.apache.org/docs/2.4/mod/core.html#allowoverride" title="Apache DOCS : Config - AllowOverride">Refer Doc</a></li>
+<li><code>Dav? mod_Dav?</code> - <a href="https://en.wikipedia.org/wiki/WebDAV" title="WebDAV Protocol Wiki">WebDAV</a> Protocol serves file authoring service over HTTP, NextCloud has an option to use this protocol. But in a simple, few-user setup we need not worry about this. If interested refer <a href="https://docs.nextcloud.com/server/18/user_manual/files/access_webdav.html" title="Nextcloud WebDav Manual">Refer Manual</a>.</li>
+</ul>
+<h2 id="securing-our-nextcloud-instance">Securing our NextCloud instance</h2>
+<ul>
+<li>
+<p>Certbot is a software by Let’s Encrypt which automates major of the work for creating a SSL certificate for your website. Let’s Encrypt Certificates are valid only for 90 days. But, the certbot runs a cron job to renew the certificate if bound for expiration.</p>
+</li>
+<li>
+<p>Installing Certbot with apt and additional dependencies.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># Installing the certbot package with inclusing the Repo PPA</span>
+sudo apt-get install software-properties-common
+sudo add-apt-repository universe
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update  
+<span class="c1"># Installing Python3 package for certbot</span>
+sudo apt-get install certbot python3-certbot-apache	
+</code></pre></div></li>
+<li>
+<p>Running the certbot command on <code>my_domain</code> with apache option, generates configuration for Apache for a default SSL config.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo certbot --apache -d my_domain -d www.my_domain
+  
+</code></pre></div></li>
+<li>
+<p>The setup process if run for the first time asks for additional details, complete it and then the total setup is done!
+<a href="https://certbot.eff.org/lets-encrypt/ubuntubionic-apache">Refer certbot docs</a></p>
+</li>
+<li>
+<p>Now add the <code>my_domain</code> to trusted domain in the nextcloud configration found under <code>/var/www/nextcloud/config.php</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;trusted_domains&#39; =&gt;
+    array (
+    0 =&gt; &#39;localhost&#39;,
+    1 =&gt; &#39;my_domain&#39;,
+    2 =&gt; &#39;public_ip&#39;  # Replace with your public IP if required
+),
+
+</code></pre></div></li>
+<li>
+<p>Open <code>https://my_domain</code> on your browser where you will be greeted with installation screen and do the final configuration setup for the Database or also can be done manually over the config.php.</p>
+</li>
+</ul>
+<h2 id="sight-of-life-from-cloud">Sight of Life from Cloud!</h2>
+<p>Enter the domain in your browser and voila. The work is done. Now you can configure everything via the Nextcloud web interface. Nextcloud is really useful for universities, file-sharing in companies secured and toatally in control.</p>
+<p><strong>Welcome to Nextcloud!</strong></p>
+<p>E-mail configuration is pending will update this blog once I test the services.</p>
+<h3 id="references">References:</h3>
+<ol>
+<li><a href="https://docs.nextcloud.com/server/16/admin_manual/installation/source_installation.html#example-installation-on-ubuntu-18-04-lts-server">Nextcloud Manual</a></li>
+<li><a href="https://certbot.eff.org/docs/">Certbot Docs</a></li>
+<li><a href="https://httpd.apache.org/docs/2.4/mod">Apache httpd web server Docs</a></li>
+</ol>
+
+  </div>
+
+  <div class="tag-category">
+    <p>...</p>
+    <p>Tags: <span class="tags-list">
+
+    
+    [
+        
+            
+                <a href="https://guhan62.github.io/tags/web-server/">web-server  </a>
+            
+        
+            
+                <a href="https://guhan62.github.io/tags/cloud/">cloud  </a>
+            
+        
+            
+                <a href="https://guhan62.github.io/tags/apache/">apache  </a>
+            
+        
+            
+                <a href="https://guhan62.github.io/tags/ssl/">ssl  </a>
+            
+        
+            
+                <a href="https://guhan62.github.io/tags/nextcloud/">nextcloud  </a>
+            
+        
+    ]
+    
+</span></p>
+    <p>categories: <span class="cat-list">
+
+    
+    [
+        
+            
+                <a href="https://guhan62.github.io/categories/guide/">guide  </a>
+            
+        
+    ]
+    
+</span></p>
+  </div>
+
+  
+  <div>
+    <script src="https://utteranc.es/client.js"
+        repo="guhan62/guhan62.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+  </div>
+
+
+            </div>
+        </main><footer class="site-footer h-card">
+  <div class="wrapper">
+    
+    <div class="footer-col-wrapper">
+      <div class="footer-col-1">
+        <h2 class="footer-heading">Hari Guhan T</h2>
+        <ul class="contact-list">
+          <li><a class="u-email" href="mailto:hariguhan@tuta.io">hariguhan@tuta.io</a></li>
+          <li><a class="u-email" href="mailto:htsgs3@gmail.com">htsgs3@gmail.com</a></li>
+          <li><a class="u-email" href="mailto:hariguha@buffalo.edu">hariguha@buffalo.edu</a></li>
+        </ul>
+      </div>
+      <div class="footer-col-2">
+        <div class="social-media-list">
+          
+	
+		<div><a href="https://github.com/guhan62" title="github : guhan62" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#github"></use></svg></a></div>
+    
+
+	
+		<div><a href="https://www.linkedin.com/in/guhan-me/" title="linkedin : guhan62" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#linkedin"></use></svg></a></div>
+    
+
+	
+		<div><a href="https://www.reddit.com/user/guen2" title="reddit : guen2" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#reddit"></use></svg></a></div>
+    
+
+	
+		<div><a href="https://twitter.com/guen2" title="twitter : guen2" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#twitter"></use></svg></a></div>
+    
+
+        </div>
+      </div>
+      <div class="footer-col-3">
+        <div class="credits-ribbon wrapper">
+	
+		<p></p>
+		<p>MIT License &copy; 2020 Guhan</p>
+		<a href="/privacy">Privacy</a>
+	
+</div>
+      </div>
+      
+    </div>
+    
+  </div>
+</footer></body>
+</html>

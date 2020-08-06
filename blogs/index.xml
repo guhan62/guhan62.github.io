@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on guhan.me</title>
+    <link>https://guhan62.github.io/blogs/</link>
+    <description>Recent content in Blogs on guhan.me</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 03 Jul 2020 17:57:44 -0400</lastBuildDate>
+    
+	<atom:link href="https://guhan62.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Guide] NextCloud on Ubuntu 18.04</title>
+      <link>https://guhan62.github.io/blogs/guide-nextcloud-on-ubuntu-18.04/</link>
+      <pubDate>Fri, 03 Jul 2020 17:57:44 -0400</pubDate>
+      
+      <guid>https://guhan62.github.io/blogs/guide-nextcloud-on-ubuntu-18.04/</guid>
+      <description>0. NextCloud, what&amp;rsquo;s that? If you are not interested to read the intro - Skip to the Guide
+NextCloud, is a fork of OwnCloud - being a suite of client-server software for creating and using file hosting services. Similar to Google Drive or DropBox where one can store Documents, photos and can share it with family and friends. Nextcloud is free and open-source which allows the client to be in control of their data and files, and getting rid of third-party sites that offer the similar services.</description>
+    </item>
+    
+  </channel>
+</rss>
