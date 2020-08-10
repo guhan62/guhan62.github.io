@@ -60,8 +60,8 @@ Nextcloud is a very vibrant community, and the application being modular the adm
 <p><strong>“Privacy isn’t about something to hide. Privacy is about something to protect. And that’s who you are. That’s what you believe in. That’s who you want to become. Privacy is the right to the self. Privacy is what gives you the ability to share with the world who you are on your own terms.”</strong></p>
 <p>-Edward Snowden</p>
 </blockquote>
-<p>You may not hide anything today, but you are exposing your habits, behaviour to every single trackers on these services. Google does claim that they do collect information from services that you are using and do not use it for <a href="https://policies.google.com/privacy">any marketing/promotional services</a> and only to improve their services for you which is good, but that is a lot of data collected on you which can provide you relevant <a href="https://policies.google.com/privacy#whycollect">ad experiences</a>.</p>
-<p>This puts you on a path, where your behaviour begins to be controlled by external factors and decisions. We are completely hooked to digital services that is easy to understand from the usage of services, history to build a profile and be easily able to predict your behaviour.</p>
+<p>You may not hide anything today, but you are exposing your habits, behavior to every single trackers on these services. Google does claim that they do collect information from services that you are using and do not use it for <a href="https://policies.google.com/privacy">any marketing/promotional services</a> and only to improve their services for you which is good, but that is a lot of data collected on you which can provide you relevant <a href="https://policies.google.com/privacy#whycollect">ad experiences</a>.</p>
+<p>This puts you on a path, where your behavior begins to be controlled by external factors and decisions. We are completely hooked to digital services that is easy to understand from the usage of services, history to build a profile and be easily able to predict your behavior.</p>
 <h2 id="choose-your-hero-vpc">Choose your Hero [VPC]!</h2>
 <p>There are multiple good Cloud services,</p>
 <ul>
@@ -75,7 +75,7 @@ I personally use <a href="https://www.vultr.com/?ref=8035292">Vultr</a>, because
 <p><em>After you give this post a read and planning to sign up for Vultr, do click on the link.</em><br>
 <strong>Virtual Cloud, can fuel your side-projects and hackathon projects for any web-application or services</strong>. Once your idea is evolved - Host and share it. Feedback and ideas from other devs, make you a better developer. I have an Ubuntu server with the basic 5$ plan which is reasonable as of now.</p>
 <h2 id="prerequisites">Prerequisites:</h2>
-<p>This guide requires two essential steps, in a VPC. Guide being targeted for Ubuntu 18.04 users, it recommends setting up your VPC with basic admin uilities like SSH, Root/Users and Firewall.</p>
+<p>This guide requires two essential steps, in a VPC. Guide being targeted for Ubuntu 18.04 users, it recommends setting up your VPC with basic admin utilities like SSH, Root/Users and Firewall.</p>
 <ul>
 <li>
 <p><strong>VPC Secure Setup</strong> - Initial Secure configuration is vital for any VPC. <a href="https://www.vultr.com/docs/initial-secure-server-configuration-of-ubuntu-18-04">Refer Vultr Doc</a></p>
@@ -84,7 +84,7 @@ I personally use <a href="https://www.vultr.com/?ref=8035292">Vultr</a>, because
 <p><strong>LAMP Stack</strong> - Nextcloud is a php application so the easiest stack to mount our application on would be the LAMP stack. <a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04" title="DigitalOcean : LAMP Stack setup on Ubuntu 18.04">Refer DigitalOcean Guide on LAMP</a></p>
 </li>
 <li>
-<p><strong>(Optional) DNS Record</strong> - Any instance of hosted web-application that is publicly accessible with data flowing from client/server requires secured transport. For this we need to enable SSL encryption on our Server for the Nextcloud application. Nextloud offers <a href="https://docs.nextcloud.com/server/12/admin_manual/installation/source_installation.html#enabling-ssl-label">self-signed SSL certificates</a> they are not good being on a public domain as they are comparitively weak. So it is better to go for commercial vendors (from Domain vendors) or using <a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a>, which offers a free trusted SSL certificate for your server.</p>
+<p><strong>(Optional) DNS Record</strong> - Any instance of hosted web-application that is publicly accessible with data flowing from client/server requires secured transport. For this we need to enable SSL encryption on our Server for the Nextcloud application. Nextloud offers <a href="https://docs.nextcloud.com/server/12/admin_manual/installation/source_installation.html#enabling-ssl-label">self-signed SSL certificates</a> they are not good being on a public domain as they are comparatively weak. So it is better to go for commercial vendors (from Domain vendors) or using <a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a>, which offers a free trusted SSL certificate for your server.</p>
 </li>
 </ul>
 <hr>
@@ -132,7 +132,7 @@ sudo mkdir nextcloud
 sudo mv ~/Downloads/nextcloud-19.0.0/* /var/www/nextcloud/
 sudo chown -R <span class="nv">$USER</span>:<span class="nv">$USER</span> /var/www/nextcloud
 sudo chmod -R <span class="m">755</span> /var/www
-</code></pre></div><p>The ownership is set to user-level, for the application to access it&rsquo;s content at a user level and not write or exec malicious code without priviliges.
+</code></pre></div><p>The ownership is set to user-level, for the application to access it&rsquo;s content at a user level and not write or exec malicious code without privileges.
 If you have trouble with setting directory permissions 😅, consider a <a href="https://chmod-calculator.com/" title="Chmod Calculator">chmod calculator</a>.</p>
 <p>Let&rsquo;s configure our Firewall first, so that Heimdall can really guard the gateway</p>
 <div class="highlight"><pre class="chroma"><code class="language-Terminfo" data-lang="Terminfo"><span class="nt">vultr@vpc:~$</span><span class="na"> sudo ufw app list
@@ -141,8 +141,8 @@ If you have trouble with setting directory permissions 😅, consider a <a href=
 </span><span class="na">	Apache Full
 </span><span class="na">	Apache Secure
 </span><span class="na">	OpenSSH
-</span></code></pre></div><p>The above applications indicate they require firewall permissions. Now <code>Apache Full</code> is the recommended profile as it enables both HTTPS/HTTP traffic over pors <code>80</code> and <code>443</code>.<br>
-Let&rsquo;s allow the &lsquo;Apache Full&rsquo; cpnfiguration.<br>
+</span></code></pre></div><p>The above applications indicate they require firewall permissions. Now <code>Apache Full</code> is the recommended profile as it enables both HTTPS/HTTP traffic over ports <code>80</code> and <code>443</code>.<br>
+Let&rsquo;s allow the &lsquo;Apache Full&rsquo; configuration.<br>
 <code>sudo ufw allow 'Apache Full'</code><br>
 You can check the status of your firewall with,<br>
 <code>sudo ufw status</code></p>
@@ -195,7 +195,7 @@ SetEnv HOME /var/www/nextcloud
 SetEnv HTTP_HOME /var/www/nextcloud
 <span class="nt">&lt;/Directory&gt;</span>
 </code></pre></div></li>
-<li>Enable the site configuration for Nextcloud and rewrite the Apache binaries, and also enable the SSL module for Apache and enable the default-ssl config to allow https traffic via defaul SSL certificate
+<li>Enable the site configuration for Nextcloud and rewrite the Apache binaries, and also enable the SSL module for Apache and enable the default-ssl config to allow https traffic via default SSL certificate
 <pre><code>sudo a2ensite nextcloud
 sudo a2enmod rewrite headers env dir mime
 sudo a2enmod ssl
@@ -207,10 +207,10 @@ sudo systemctl restart apache2
 <h3 id="lets-encrypt-provided-ssl-certificates">Let&rsquo;s Encrypt provided SSL certificates</h3>
 <ul>
 <li>
-<p>Assuiming <code>my_domain</code> is assigned with an A record with correct key/value pairs of the public IP from your Vultr Dashboard is setup with your domain vendor.</p>
+<p>Assuming <code>my_domain</code> is assigned with an A record with correct key/value pairs of the public IP from your Vultr Dashboard is setup with your domain vendor.</p>
 </li>
 <li>
-<p>If setting up with a prcured domain <code>my_domain</code>, then open up the configuration file</p>
+<p>If setting up with a procured domain <code>my_domain</code>, then open up the configuration file</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo nano /etc/apache2/sites-available/nextcloud.conf
 </code></pre></div></li>
 <li>
@@ -267,7 +267,7 @@ sudo apt-get install certbot python3-certbot-apache
 <a href="https://certbot.eff.org/lets-encrypt/ubuntubionic-apache">Refer certbot docs</a></p>
 </li>
 <li>
-<p>Now add the <code>my_domain</code> to trusted domain in the nextcloud configration found under <code>/var/www/nextcloud/config.php</code></p>
+<p>Now add the <code>my_domain</code> to trusted domain in the nextcloud configuration found under <code>/var/www/nextcloud/config.php</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;trusted_domains&#39; =&gt;
     array (
     0 =&gt; &#39;localhost&#39;,
@@ -281,7 +281,7 @@ sudo apt-get install certbot python3-certbot-apache
 </li>
 </ul>
 <h2 id="sight-of-life-from-cloud">Sight of Life from Cloud!</h2>
-<p>Enter the domain in your browser and voila. The work is done. Now you can configure everything via the Nextcloud web interface. Nextcloud is really useful for universities, file-sharing in companies secured and toatally in control.</p>
+<p>Enter the domain in your browser and voila. The work is done. Now you can configure everything via the Nextcloud web interface. Nextcloud is really useful for universities, file-sharing in companies secured and totally in control.</p>
 <p><strong>Welcome to Nextcloud!</strong></p>
 <p>E-mail configuration is pending will update this blog once I test the services.</p>
 <h3 id="references">References:</h3>
@@ -384,7 +384,7 @@ sudo apt-get install certbot python3-certbot-apache
         </div>
       </div>
       <div class="footer-col-3">
-        <div class="credits-ribbon wrapper">
+        <div class="credits-ribbon">
 	
 		<p></p>
 		<p>MIT License &copy; 2020 Guhan</p>
