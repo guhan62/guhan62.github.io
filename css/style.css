@@ -109,7 +109,7 @@ h1,h2,h3,h4,h5,h6{
     font-weight: 600
 }
 .post-content hr{
-    margin: 15px 0 15px 0;
+    margin: 15px 0 5px 0;
 }
 .post-content strong {
     font-weight:1000;
@@ -317,7 +317,7 @@ table td{
 }
 .site-header{
     border-top:5px solid #aa0009;
-    border-bottom:1px solid #e8e8e8;
+    border-bottom:1px solid #555555;
     min-height:55.95px;
     position:relative
 }
@@ -397,7 +397,7 @@ table td{
     }
 }
 .site-footer{
-    border-top:1px solid #e8e8e8;
+    border-top: 1px solid #555555;
     padding:10px 0
 }
 .footer-heading{
@@ -476,7 +476,7 @@ table td{
     font-size:25.5px
 }
 .post-header{
-    margin-bottom:30px;
+    margin-bottom:20px;
     text-align: center;
 }
 .post-title{
