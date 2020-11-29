@@ -1,0 +1,41 @@
+{{ define "main" }}
+   <section class="section">
+      <div class="container">
+      <!--Blog List-->
+      {{ if eq "Blogs" $.Name }}
+        <table class="list-table">
+          <tbody>
+          {{ range .Data.Pages }}
+            <tr>
+              <td class="td-time"><time>{{ (.Date.Format (default "January 2, 2006" $.Site.Params.dateFormat)) }}</time></td>
+              <td class="table-title">
+                {{ with .Param "favourite"}} {{ if eq . true }} {{ emojify ":star:" }} {{ end }}{{ end }}
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+              </td>
+            </tr>
+          {{ end }}
+          </tbody>
+        </table>
+      {{ end }}
+      
+      <!--Tag Container-->
+      {{ if eq "tags" $.Data.Plural }}
+          <h2>{{ $.Data.Singular }} - #{{ $.Name | humanize }}</h2>
+          <table class="list-table"> 
+              <tbody>
+              {{ range .Data.Pages }}
+                <tr>
+                  <td class="td-time"><time>{{ (.Date.Format (default "January 2, 2006" $.Site.Params.dateFormat)) }}</time></td>
+                  <td class="table-title">
+                    {{ with .Param "favourite"}} {{ if eq . true }} {{ emojify ":star:" }} {{ end }}{{ end }}
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                  </td>
+                </tr>
+              {{ end }}
+              </tbody>
+            </table>
+      {{ end }}
+    </section>
+</div>
+
+{{ end }}

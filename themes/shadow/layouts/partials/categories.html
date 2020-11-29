@@ -1,0 +1,13 @@
+<span class="cat-list">
+{{ $taxo := "categories" }}
+    {{ with .Param $taxo }}
+    [
+        {{ range $index, $tags := . }}
+            {{ with $.Site.GetPage (printf "/%s/%s" $taxo $tags) }}
+            {{- if gt $index 0 }}, {{ end -}}
+            <a href="{{ .Permalink }}">{{ $tags }}</a>
+            {{ end }}
+        {{ end }}
+    ]
+    {{ end }}
+</span>

@@ -1,0 +1,31 @@
+<div class="gallery">
+<script type="text/javascript">
+	var index = 0;
+</script>
+{{ range .Site.Data.books }}
+	<div class="book">
+		<a href="{{ .book_url }}" target="_blank"><img class="book-cover" src="{{ .cover }}"alt="{{ .title }}"></a>
+		<div class="book-metadata">
+			<p class="book-title">{{ .title }}</p>
+			{{ with .author_data }}
+				<a href="{{ .url }}">{{ .name }}</a>
+			{{ end }}
+			<br/>
+			{{ with .rating }}
+			<a class="book-rating" title="{{ . }}"></a>
+			<script async type="text/javascript">
+				star = '&#11088;';
+				rating = new Number("{{ . }}");
+				ht_content = star.repeat(rating.toFixed());
+				document.getElementsByClassName('book-rating')[index++].innerHTML = ht_content;
+			</script>
+			{{ end }}
+			<p>{{ .completed }}</p>
+		</div>
+	</div>
+{{ end }}
+</div>
+
+<div>
+	<p class="cover-credits"><span style="color:#de4e57">♥</span>Powered by <a href="https://openlibrary.org/"><img style="height:30px; padding: 0 5px 0 5px" src="https://openlibrary.org/static/images/openlibrary-logo-tighter.svg"></a> API</p>
+<div>

@@ -1,0 +1,13 @@
+{{ define "main" }}
+<header class="post-header">
+	<h2 class="p-name">நான். Me. Moi. 我. 날</h2>
+	<div class="contact-ribbon">
+		{{ partial "social-icons.html" . }}
+	</div>
+	<hr>
+</header>
+<div class="post-content">
+	{{ .Content }}
+</div>
+
+{{ end }}
