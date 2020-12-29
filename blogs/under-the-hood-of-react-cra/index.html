@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Under the Hood of React CRA | guhan.me</title>
+    
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head><body>
+        <header class="site-header">
+    <div class="wrapper"><a class="site-title" rel="author" href="/">&lt;guhan/&gt;</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+  
+          <div class="trigger">
+            
+              <a class="page-link" href="https://guhan62.github.io/blogs/">Blog</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/portfolio/HariGuhan_CV.pdf">Portfolio</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/reads/">Reads</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/about/">About</a>
+            
+          </div>
+        </nav>
+    </div>
+  </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title p-name">Under the Hood of React CRA</h1>
+    <p class="post-meta">
+      8 Mins Read //
+      <time class="dt-published">Aug 13, 2020</time>
+    </p>
+    <hr class="post-content" />
+  </header>
+
+  <div class="post-content blog-post">
+      <h2 id="react-engine---intro">React Engine - Intro</h2>
+<p><em>If you are aware of Webpack &amp; Babel, I suggest you <a href="#wiring-the-code">skip to the code part</a> to set your own minimal React Server</em></p>
+<p><a href="https://github.com/facebook/create-react-app">React CRA (Create-React-App)</a>, is a great package for devs getting started on React.<br>
+It has the all the parts - <strong>loaders, configs, builds, templates, plugins</strong> - It is bootstrapped package for you, to get started working on your React App. It is recommended for everyone, who wants to learn React quick and people looking to learn their first JS framework.<br>
+However, if you are completely new to the web-framework and have <strong><em>no-idea</em></strong> regarding bundlers, loaders then it is good to have a small peek under the hood, on how to get started with a smaller subset of tools.</p>
+<h2 id="before-you-pop-the-hood">Before you pop the hood</h2>
+<p><strong>This guide is a simple setup, to understand Webpack &amp; Babel how they sync with React</strong></p>
+<ul>
+<li>
+<p>If you want to disassemble and see the functioning of every part of the React engine, then I would suggest looking at <a href="https://github.com/Bogdan-Lyashenko">Bohdahn&rsquo;s</a> write-up on <a href="https://github.com/Bogdan-Lyashenko/Under-the-hood-ReactJS">Under the hood: React</a>. He has explained the Tree for both v15 &amp; v16, many lifecycle methods deprecated but he summarized and explained the concepts neatly.</p>
+</li>
+<li>
+<p>If you are looking for a simpler, neat and quick explanation for React Lifecycle Methods, Check out <a href="https://blog.bitsrc.io/react-16-lifecycle-methods-how-and-when-to-use-them-f4ad31fb2282">Scott Domes&rsquo;s articles on Medium</a>. They come with examples and will get you on track soon.</p>
+</li>
+<li>
+<p>So what shall we be doing is, just not adding bloat to our car - we just add what is required and understand how these parts support each other. For that we need many important parts. Let&rsquo;s <strong>pop the hood</strong>.</p>
+</li>
+</ul>
+<h2 id="the-core-parts-of-the-react-dev-engine">The core parts of the React Dev Engine</h2>
+
+<figure class="blog-figure">
+    
+        <img src="./React_Components_Apart_proc.jpeg" 
+        alt="Image Credits: WikiMedia Commons &amp;" />
+    
+
+    
+    <figcaption>
+        
+            <h4>Components that powers React Applications</h4>
+        
+        <p>Image Credits: WikiMedia Commons &amp;
+        <a href="https://unsplash.com/@benmullins?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText"> 
+            Ben Mullins(Unsplash)
+        </a> 
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<ul>
+<li>
+<p><strong>ES6</strong> - ECMAScript or ES is is a JavaScript standard meant to ensure the compatability of Web pages across different Web browsers. It is popularly used in Node.js programming. Currently, ES2020 is the standard, you can refer to it&rsquo;s <a href="https://developer.mozilla.org/en-US/docs/Archive/Web/JavaScript/New_in_JavaScript">changelog</a> to understand the evoultion of JS.<br>
+Refer <a href="https://en.wikipedia.org/wiki/ECMAScript">ECMA Wiki</a> &amp; <a href="https://tc39.es/ecma262/">ECMA Language Specs</a></p>
+</li>
+<li>
+<p><strong>Babel</strong> - It is JS toolchain used to convert <a href="https://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a> 2015+ code into a backwards compatible version of JS for current and older environments. For example,</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Try Babel REPL - https://babeljs.io/docs/en/index.html
+</span><span class="c1"></span>
+<span class="c1">// Babel Input: ES2015+ arrow function, let keyword
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">planets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Magrathea&#39;</span><span class="p">,</span> <span class="s1">&#39;Bethselamin&#39;</span><span class="p">,</span> <span class="s1">&#39;Betelgeuse V&#39;</span><span class="p">,</span> <span class="s1">&#39;Earth&#39;</span><span class="p">]</span>
+<span class="nx">planets</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">planet</span> <span class="p">=&gt;</span> <span class="nx">Destroy</span><span class="p">(</span><span class="nx">planet</span><span class="p">));</span>
+
+<span class="c1">//  Babel Output: ES5 equivalent
+</span><span class="c1"></span><span class="s2">&#34;use strict&#34;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">planets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Magrathea&#39;</span><span class="p">,</span> <span class="s1">&#39;Bethselamin&#39;</span><span class="p">,</span> <span class="s1">&#39;Betelgeuse V&#39;</span><span class="p">,</span> <span class="s1">&#39;Earth&#39;</span><span class="p">];</span>
+<span class="nx">planets</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">planet</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Destroy</span><span class="p">(</span><span class="nx">planet</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><p>Refer <a href="https://babeljs.io/docs/en/index.html">Babel Docs</a></p>
+</li>
+<li>
+<p><strong>Webpack</strong> - One of the most intersting tools you will find, webpack is also a JS toolchain that compiles JS modules and bundles them. This bundler combines your code and it&rsquo;s dependencies and puts them together in a file, which can be deployed easily. There are many core concepts to look into, to understand how Webpack bundles the modules using it&rsquo;s dependency graph. Webpack would be the structure that binds all the other parts, will be looking into more of it below.
+Refer <a href="https://webpack.js.org/guides/getting-started/">Webpack Docs</a>.</p>
+</li>
+<li>
+<p><strong>CSS Loader, Style Loader</strong> - interprets <code>@import</code> and <code>url()</code> like <code>import/require()</code> and will resolve them. This is a plugin for webpack to resolve your imports on style sheets. The usual trick is including them with a <code>&lt;link&gt;</code> in html, but in JS when you call on import statements</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="nx">css</span> <span class="nx">from</span> <span class="s1">&#39;file.css&#39;</span><span class="p">;</span>
+</code></pre></div><p>this URL needs to be resolved by the bundler, which we will configure by installing this additional plugin. As for Style Loaders it is simple injection into DOM.</p>
+</li>
+<li>
+<p><strong>ReactJS</strong> - JS Library for building UI components. Open-Source and maintained by Facebook with a very vibrant community. On v16 now, it has a decent learning curve compared to the other frameworks. There are countless tutorials to learn React from the internet, it is a very useful framework to code up your front-end with actual JS code and offers tons of features like components, states, virtualDOM &amp; lifecycle methods.<br>
+Refer <a href="https://reactjs.org/tutorial/tutorial.html">React Tutorial</a> and <a href="https://reactjs.org/docs/getting-started.html">React Docs</a>.</p>
+</li>
+</ul>
+<h2 id="building-the-car">Building the Car</h2>
+<h4 id="install-all-the-packages-and-dependenices">Install all the packages and dependenices</h4>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># Install the following as global deps [if required] ... [the/path/node/node_modules]</span>
+npm i react react-dom
+
+<span class="c1"># Install the other packages as local deps ... [./node_modules/]</span>
+npm i -D @babel/core @babel/preset-env @babel/preset-react core-js <span class="se">\
+</span><span class="se"></span>babel-loader css-loader style-loader html-webpack-plugin webpack webpack-cli webpack-dev-server
+</code></pre></div><p>Refer <a href="https://docs.npmjs.com/cli-commands/install.html">npm-install docs</a> to understand the arguments.</p>
+<ul>
+<li>
+<p><strong>react, react-dom</strong> - React JS packages, to define the functionality of React components and Render methods for virtual DOM.</p>
+</li>
+<li>
+<p><strong>@babel/core, @babel/preset-env, @babel/preset-react, core-js</strong> -<br>
+All Babel packages used here are part of v7, The core functionality for Babel, JSX Rendering &amp; Preset Environments to choose target platforms in verbose terms. But, Core-JS what&rsquo;s that, Babel is pulling the plug on @babel/pollyfill, Pollyfill emulates an ES5+ environment in your code to give you rich feature-set like<br>
+<code>Promises</code> - to trigger AJAX queries and safer way to handle req/resp,<br>
+<code>Array.from</code> - static method to create an array from an iterable object.
+
+<figure class="blog-figure">
+    
+        <img src="babel[7.4]Pollyfill_Alternative_aug_20_proc.jpeg" 
+        alt="" />
+    
+
+    
+    <figcaption>
+        
+            <h4>Babel pulls the plug on @babel/pollyfill</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+Refer <a href="https://babeljs.io/docs/en/babel-polyfill">Babel/Pollyfill</a></p>
+</li>
+<li>
+<p><strong>core-js</strong> - collection of Polyfills to support stable and experimental features of the latest ECMAScript. There are various versions preloaded with the package.<br>
+Refer <a href="https://github.com/zloirock/core-js">Core-Js</a></p>
+</li>
+<li>
+<p><strong>regenerator-runtime</strong> - Package to support generator functions and async/await functions. The <code>regenerator-runtime</code> package is installed as a dependency and can be found in the <code>package-lock.json</code>.</p>
+</li>
+<li>
+<p><strong>html-webpack-plugin</strong> - Webpack plugin to simplify creation of HTML files to serve your webpack bundles.</p>
+</li>
+<li>
+<p><strong>webpack, webpack-cli, webpack-dev-server</strong> - The simplest and easiest to understand bundler plus easily cutomizable. <code>webpack-cli</code> helps environment to play with webpack.config.js, if you want to play arounf yourself additional dependencies need to be installed.<br>
+<code>webpack-dev-server</code> one&rsquo;s favourite in developing their web-applications, the content is served on a Node backed server with hot reloads which again is customizable.<br>
+Refer <a href="https://webpack.js.org/configuration/dev-server/">webpack-dev-server</a></p>
+</li>
+</ul>
+<h4 id="wiring-the-code">Wiring the code</h4>
+<ul>
+<li>
+<p>Static Files (HTML) &amp; React Boilerplate Code - When you install create-react-app, it gives you an amazing template but bloated service-workers and hidden configs that are managed by react-scripts. Now we must present our own template, below is the structure of our sample application.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">project_folder/
+├── dist
+│   ├── bundle.js
+│   └── index.html
+├── index.html
+├── node_modules
+│   .....
+├── package-lock.json
+├── public
+│   ├── favicon.ico
+│   └── index.html
+├── src
+│   ├── css
+│   │   └── style.css
+│   └── js
+│       ├── App.js
+│       └── index.js
+└── webpack.config.js
+</code></pre></div></li>
+<li>
+<p><code>App.js, index.js, public/index.html</code> will be part of our React boilerplate, our boilerplate will be bloated with some ES5+ goodies just to test the functionality of Babel interpreter and webpack bundler.
+<em><strong>public/index.html</strong></em></p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;icon&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/favicon.ico&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;theme-color&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;#000000&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span>
+        <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span>
+        <span class="na">content</span><span class="o">=</span><span class="s">&#34;React Template&#34;</span>
+    <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>My React App<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">noscript</span><span class="p">&gt;</span>You need to enable JavaScript to run this app.<span class="p">&lt;/</span><span class="nt">noscript</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;root&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div><p><em><strong>src/js/index.js</strong></em> - It is essential we import both <code>core-js</code>, <code>regenerator-runtime</code> in the root of our application in the <code>index.js</code> but it&rsquo;s play in bundling is handled by the preset we allow in Babel.</p>
+<div class="highlight"><pre class="chroma"><code class="language-react" data-lang="react"><span class="kr">import</span> <span class="s1">&#39;core-js&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s1">&#39;regenerator-runtime/runtime&#39;</span><span class="p">;</span>
+
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s2">&#34;react-dom&#34;</span><span class="p">;</span>
+
+<span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App.js&#39;</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+<span class="p">&lt;</span><span class="nt">App</span> <span class="p">/&gt;,</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">));</span>
+</code></pre></div><p><em><strong>src/js/App.js</strong></em> - A simple App with ES6+ modern syntax with the usage of Promises, async/await. Just to test the features of our template out.</p>
+<div class="highlight"><pre class="chroma"><code class="language-react" data-lang="react"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s1">&#39;../css/style.css&#39;</span><span class="p">;</span>
+
+<span class="kd">let</span> <span class="nx">questions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;Q&#39;</span> <span class="o">:</span> <span class="s1">&#39;The Infinite Improbability Drive powers Startship? Can it hyperjump to&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;Q&#39;</span> <span class="o">:</span> <span class="s1">&#39;What about &#39;</span><span class="p">}</span>
+<span class="p">]</span>
+<span class="kd">let</span> <span class="nx">swapi</span> <span class="o">=</span> <span class="s1">&#39;https://swapi.dev/api/&#39;</span><span class="p">;</span>
+<span class="c1">// async/await JS API function example
+</span><span class="c1"></span><span class="nx">async</span> <span class="kd">function</span> <span class="nx">getPlanets</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">resp</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">swapi</span><span class="o">+</span><span class="s1">&#39;planets&#39;</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>                
+<span class="p">};</span>
+<span class="c1">// Our React App component
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">App</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Simple State Example
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="p">[</span><span class="nx">planets</span><span class="p">,</span> <span class="nx">setPlanets</span><span class="p">]</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">useState</span><span class="p">([]);</span>
+    <span class="c1">// Changing State using `useEffect()`
+</span><span class="c1"></span>    <span class="nx">React</span><span class="p">.</span><span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">getPlanets</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="c1">//Unpacking the JSON and loading to State
+</span><span class="c1"></span>            <span class="kr">const</span> <span class="nx">planets_data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">results</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">planet</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="k">return</span> <span class="nx">planet</span><span class="p">.</span><span class="nx">name</span><span class="p">})</span>
+            <span class="nx">setPlanets</span><span class="p">(</span><span class="nx">planets_data</span><span class="p">)</span>
+        <span class="p">});</span>
+    <span class="p">},</span> <span class="p">[]);</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">Starship</span> <span class="o">-</span> <span class="nx">Heart</span> <span class="k">of</span> <span class="nx">Gold</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+            <span class="c1">// Template Literals from ES5 - 
+</span><span class="c1"></span>            <span class="c1">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+</span><span class="c1"></span>            <span class="p">{</span> <span class="nx">questions</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">question</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span><span class="p">(</span>
+                <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">idx</span><span class="p">}&gt;{</span><span class="sb">`</span><span class="si">${</span><span class="nx">question</span><span class="p">.</span><span class="nx">Q</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">planets</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span><span class="si">}</span><span class="sb">?`</span><span class="p">}&lt;/</span><span class="nt">h2</span><span class="p">&gt;)</span> 
+                <span class="p">})</span>
+            <span class="p">}</span> 
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">App</span>
+</code></pre></div></li>
+<li>
+<p>Now the tricky part to write our <code>webpack config</code> in <code>webpack.config.js</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="c1">// 1 - Packages required
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;html-webpack-plugin&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+
+<span class="c1">// 2 - Webpack Concepts [Entry, Output, Loaders, plugins]
+</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">entry</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="nx">__dirname</span><span class="p">,</span><span class="s1">&#39;src/js/index.js&#39;</span><span class="p">),</span>
+    <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;dist/&#39;</span><span class="p">),</span>
+        <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;bundle.js&#39;</span>
+    <span class="p">},</span>
+  
+<span class="nx">module</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+           <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/i</span><span class="p">,</span>
+            <span class="nx">use</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="nx">loader</span><span class="o">:</span> <span class="s2">&#34;style-loader&#34;</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="nx">loader</span><span class="o">:</span> <span class="s2">&#34;css-loader&#34;</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span> 
+        <span class="p">{</span>
+            <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.m?(js|jsx)$/</span><span class="p">,</span>
+            <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span><span class="p">,</span>
+            <span class="nx">use</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">loader</span><span class="o">:</span> <span class="s2">&#34;babel-loader&#34;</span><span class="p">,</span>
+                <span class="nx">options</span><span class="o">:</span> <span class="p">{</span> <span class="nx">presets</span> <span class="o">:</span><span class="p">[</span><span class="s1">&#39;@babel/preset-env&#39;</span><span class="p">,</span> <span class="s2">&#34;@babel/preset-react&#34;</span> <span class="p">]}</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">},</span>
+<span class="nx">plugins</span><span class="o">:</span><span class="p">[</span> <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;public/index.html&#39;</span><span class="p">),</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;index.html&#39;</span><span class="p">,</span>
+    <span class="nx">favicon</span> <span class="o">:</span> <span class="s1">&#39;public/favicon.ico&#39;</span>  <span class="p">})</span> 
+<span class="p">],</span>
+<span class="nx">devServer</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="nx">inline</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">hot</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><ol>
+<li><strong>Packages required</strong> : html-webpack-plugin is an external package that must be imported to be used, we use the Node package path to resolve paths.</li>
+<li><strong>Webpack Concepts</strong> :
+<ul>
+<li><strong>Entry</strong> : Entry-Point of our Application or root node to the dependency graph of Webpack, here <code>src/js/index.js</code></li>
+<li><strong>Output</strong>: After bundling the modules, emitting the final bundle to specified directory, in our case <code>/dist/bundle.js</code>.</li>
+<li><strong>module.rules</strong> : Specifying rules for certain files in project folder which <code>loader</code> is to be used and additional options specified.</li>
+<li><strong>plugins</strong> : Additional capabilities (self-developed packages / 3rd party) to optimize or tweak your webpack process.</li>
+<li><strong>devServer</strong>: Additional Dev Server Capabilities</li>
+</ul>
+</li>
+</ol>
+<p><strong>Refer the Docs, to understand more on Webpack</strong> : <a href="https://webpack.js.org/concepts/">Webpack Concepts</a></p>
+</li>
+<li>
+<p>Finally to include some Babel config and few CLI tricks in your <code>package.json</code>. Add a <code>key</code> for <code>Babel config</code>, to configure presets for ES environment emulation.</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;babel&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;presets&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&#34;@babel/preset-env&#34;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nt">&#34;useBuiltIns&#34;</span><span class="p">:</span> <span class="s2">&#34;usage&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;corejs&#34;</span><span class="p">:</span> <span class="s2">&#34;3.6&#34;</span><span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div><p>Also modify your <code>scripts</code> key in you <code>package.json</code>,</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;build:dev&#34;</span><span class="p">:</span> <span class="s2">&#34;webpack --mode=development&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;webpack-dev-server  --mode development&#34;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>
+<p>Run the command <code>npm start</code> and navigate to <code>localhost:8080</code> if you want to give a specified port check out <a href="https://webpack.js.org/configuration/dev-server/">dev-server</a> to add the <code>port</code> property to <code>devServer</code> in your <code>webpack.config.js</code>
+
+<figure class="blog-figure">
+    
+        <img src="React_Template_proc.jpeg" 
+        alt="" />
+    
+
+    
+    <figcaption>
+        
+            <h4>Our Simple React Template demonstrating minimum ES5&#43; code using Webpack config</h4>
+        
+    </figcaption>
+    
+</figure>
+
+</p>
+</li>
+</ul>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>Now, you get to understand the picture how <code>Webpack</code>, <code>Babel</code> &amp; <code>React</code> are the brains behind the React CRA.</li>
+<li>React CRA is wonderful, it is good to understand how does the framework powers itself.</li>
+<li>Breaking apart the webpack config, understanding modules &amp; plugins.</li>
+<li>Pollyfill replacement with core-js and how to set the environment.</li>
+</ul>
+
+  </div>
+
+  <div class="tag-category">
+    <p>...</p>
+    <p>categories: <span class="cat-list">
+
+    
+    [
+        
+            <a href="https://guhan62.github.io/categories/guide/">guide</a>
+            
+        
+            , <a href="https://guhan62.github.io/categories/react/">react</a>
+            
+        
+    ]
+    
+</span></p>
+  </div>
+
+  
+  <div>
+    <script src="https://utteranc.es/client.js"
+    repo="guhan62/guhan62.github.io"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"
+    async>
+    </script>
+  </div>
+
+  
+    <script src="/js/copy-code-button.js"></script>
+
+
+            </div>
+        </main><footer class="site-footer h-card">
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col-1">
+        <h2 class="footer-heading">Hari Guhan T</h2>
+        <ul class="contact-list">
+          <li><a class="u-email" href="mailto:hariguhan@tuta.io">hariguhan@tuta.io</a></li>
+          <li><a class="u-email" href="mailto:htsgs3@gmail.com">htsgs3@gmail.com</a></li>
+          <li><a class="u-email" href="mailto:hariguha@buffalo.edu">hariguha@buffalo.edu</a></li>
+        </ul>
+      </div>
+      <div class="footer-col-2">
+        <div class="social-media-list">
+          
+	
+		<div><a href="https://github.com/guhan62" title="github : guhan62" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#github"></use></svg></a></div>
+    
+
+	
+		<div><a href="https://www.linkedin.com/in/guhan-me/" title="linkedin : guhan62" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#linkedin"></use></svg></a></div>
+    
+
+	
+		<div><a href="https://www.reddit.com/user/guen2" title="reddit : guen2" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#reddit"></use></svg></a></div>
+    
+
+	
+		<div><a href="https://twitter.com/guen2" title="twitter : guen2" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#twitter"></use></svg></a></div>
+    
+
+        </div>
+      </div>
+      <div class="footer-col-3">
+        <div class="credits-ribbon">
+	
+		<p></p>
+		<p>MIT License &copy; 2020 Guhan</p>
+		<a href="/privacy">Privacy</a>
+	
+</div>
+      </div>
+      
+    </div>
+    
+  </div>
+</footer></body>
+</html>
