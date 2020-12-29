@@ -1,0 +1,77 @@
+[ { "grad" : {
+    "major": "MS (Computer Science)",
+    "timeline" : "Jan 2020- May 2021",
+    "GPA": "3.906*/4.0",
+    "univ": "University at Buffalo, SUNY - Buffalo, NY",
+    "semesters" : {
+        "3 | Spring Jan 2021" : [
+            "CSE586 Distributed Systems",
+            "CSE510 Edge Intelligence*",
+            "CSE546 Reinforcement Learning*"
+        ],
+        "2 | Fall Aug 2020" : [
+            "CSE531 Algorithms Analysis and Design",
+            "CSE610 Nonparametric Machine Learning",
+            "CSE611 MS Project Development",
+            "CSE715 Seminar: Software Verification"
+        ],
+        "1 | Spring Jan 2020" : [
+            "CSE521 Operating Systems", 
+            "CSE574 Intro to Machine Learning", 
+            "CSE587 Data Intensive Computing",
+            "CSE542 Software Eng. Concepts"
+        ]
+    },
+    "info": "Buffalo, New York."
+}}, 
+{ "undergrad" : {
+    "major": "B.Tech (Computer Science)",
+    "timeline" : "Aug 2014- Jun 2018",
+    "GPA": "8.03/10.0",
+    "univ": "Amrita University - Coimbatore, India",
+    "semesters" : {
+        "Semester 1 | 2014-15" : [
+            "MAT111 Matrix Algebra, ODE",
+            "MEC100 Engineering Mechanics",
+            "EEE100 Electrical Engineering"
+        ],
+        "Semester 2 | 2014-15" : [
+            "MAT112 Vector Calculus, PDE",
+            "ECE100 Electronics Engineering"
+        ],
+        "Semester 3 | 2015-16" : [
+            "MAT220 Discrete Mathematics",
+            "CSE220 Object Oriented Programming",
+            "ENG251 Business Communication"
+        ],
+        "Semester 4 | 2015-16" : [
+            "MAT212 Statistics",
+            "CSE210 Computer Organisation & Architecture",
+            "CSE221 SICP",
+            "CSE230 Data Structures",
+            "ECE212 Embedded Systems"
+        ],
+        "Semester 5 | 2016-17" : [
+            "CSE300 Operating Systems",
+            "CSE330 Design & Analysis of Algorithms",
+            "CSE340 Database Management Systems",
+            "CSE390 Java Programming"
+        ],
+        "Semester 6 | 2016-17" : [
+            "CSE310 Computer Networks",
+            "CSE331 Formal Language & Automata",
+            "CSE362 Cryptography"
+        ],
+        "Semester 7 | 2017-2018" : [
+            "CSE400 Computer Graphics",
+            "CSE430 Computer Language Engineering",
+            "CSE455 Data Mining",
+            "MNG400 Principles of Management"
+        ],
+        "Semester 8 | 2017-2018" : [
+            "CSE459 Big Data Analytics",
+            "CSE499 Project (Developed during Internship with IBM)"
+        ]
+    },
+    "info": "Only highlight courses mentioned*"
+}}]

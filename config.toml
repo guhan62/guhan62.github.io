@@ -38,7 +38,7 @@ staticDir = ["static"]
 
     [[menu.main]]
         name = "CV"
-        url = "CV/HariGuhan_CV.pdf"
+        url = "https://drive.google.com/file/d/1fVhBUqcdWz0OKWQzD2QAzGgkmIXv0WWV/view?usp=sharing"
         weight = 10
 
     [[menu.main]]

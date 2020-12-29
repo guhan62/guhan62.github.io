@@ -1,0 +1,30 @@
+{{ range .Site.Data.courses }}
+    {{ range . }}
+    <div class="card-descriptor">
+        <h4 style="text-decoration: underline;"><b>Course: </b>{{ .major }}</h4>
+        <p>{{ .univ }}</p>
+        <p>{{ .timeline }}</p>
+        <p><b>GPA: {{ .GPA }}</b></p>
+        <p><b>{{ .info }}</b></p>
+    </div>
+    <div class="gallery">
+    {{ with .semesters }}
+        {{ range  $key, $value := . }}
+        <div class="card">
+            <div class="card-header">
+                <h4><b>{{ $key }}</b></h4> 
+            </div>
+            <div class="card-container">
+                <ul>
+                {{ range $value }}
+                    <li>{{ . }}</li>
+                {{ end }}
+                </ul>
+            </div>
+        </div>
+        {{ end }}
+    {{ end }}
+    </div>
+    {{ end }}
+
+{{ end }}

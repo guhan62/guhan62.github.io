@@ -74,6 +74,7 @@ soap sockets SPL standard sysvmsg sysvsem sysvshm tokenizer wddx xmlreader xmlwr
 
 ## Database for NextCloud
 Let's set up a Nextcloud user and a database Nextcloud exclusively for our Nextcloud Application.
+
 ```Bash
 sudo mysql -u root -p
 
@@ -137,7 +138,6 @@ Virtual Hosts are multiple entry points to the same location. Imagine Heimdall a
 
 ```Bash
 # Default Config /etc/apache2/sites-available/example.com.conf
-
 sudo nano /etc/apache2/sites-available/nextcloud.conf
 ```
 
@@ -170,8 +170,7 @@ sudo nano /etc/apache2/sites-available/nextcloud.conf
 * Assuming `my_domain` is assigned with an A record with correct key/value pairs of the public IP from your Vultr Dashboard is setup with your domain vendor.
 * If setting up with a procured domain `my_domain`, then open up the configuration file
 	```Bash
-	sudo nano /etc/apache2/sites-available/nextcloud.conf
-	```
+	sudo nano /etc/apache2/sites-available/nextcloud.conf```
 * Paste the following configuration
 	```xml
 	<VirtualHost *:80>
