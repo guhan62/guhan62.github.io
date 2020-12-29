@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /portfolio/
+Disallow: /privacy/
+
+
+Disallow: /privacy/
+
+
+Sitemap: https://guhan62.github.io/sitemap.xml
