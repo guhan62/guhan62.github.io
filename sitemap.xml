@@ -90,11 +90,29 @@
   </url>
   
   <url>
+    <loc>https://guhan62.github.io/courses/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="x-default"
+                href="https://guhan62.github.io/courses/"
+                />
+  </url>
+  
+  <url>
     <loc>https://guhan62.github.io/reads/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="x-default"
                 href="https://guhan62.github.io/reads/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guhan62.github.io/portfolio/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="x-default"
+                href="https://guhan62.github.io/portfolio/"
                 />
   </url>
   

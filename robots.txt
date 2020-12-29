@@ -3,8 +3,6 @@ Disallow: /portfolio/
 Disallow: /privacy/
 
 
-Disallow: /portfolio/
-
 Disallow: /privacy/
 
 

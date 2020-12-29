@@ -21,7 +21,11 @@
             
               <a class="page-link" href="https://guhan62.github.io/blogs/">Blog</a>
             
-              <a class="page-link" href="https://guhan62.github.io/portfolio/HariGuhan_CV.pdf">Portfolio</a>
+              <a class="page-link" href="https://guhan62.github.io/courses/">Coursework</a>
+            
+              <a class="page-link" href="https://drive.google.com/file/d/1fVhBUqcdWz0OKWQzD2QAzGgkmIXv0WWV/view?usp=sharing">CV</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/portfolio/">Portfoloio</a>
             
               <a class="page-link" href="https://guhan62.github.io/reads/">Reads</a>
             
@@ -239,9 +243,9 @@ Refer <a href="https://webpack.js.org/configuration/dev-server/">webpack-dev-ser
 <span class="p">]</span>
 <span class="kd">let</span> <span class="nx">swapi</span> <span class="o">=</span> <span class="s1">&#39;https://swapi.dev/api/&#39;</span><span class="p">;</span>
 <span class="c1">// async/await JS API function example
-</span><span class="c1"></span><span class="nx">async</span> <span class="kd">function</span> <span class="nx">getPlanets</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">resp</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">swapi</span><span class="o">+</span><span class="s1">&#39;planets&#39;</span><span class="p">);</span>
-    <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+</span><span class="c1"></span><span class="kr">async</span> <span class="kd">function</span> <span class="nx">getPlanets</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">resp</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">swapi</span><span class="o">+</span><span class="s1">&#39;planets&#39;</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
     <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>                
 <span class="p">};</span>
 <span class="c1">// Our React App component
@@ -393,13 +397,18 @@ Refer <a href="https://webpack.js.org/configuration/dev-server/">webpack-dev-ser
   </div>
 
   
-  <div>
+  <div id="comments">
     <script src="https://utteranc.es/client.js"
     repo="guhan62/guhan62.github.io"
     issue-term="title"
     theme="github-light"
     crossorigin="anonymous"
     async>
+    </script>
+    <script  type="text/javascript">
+    document.querySelector('#comments').addEventListener('load', event => {
+      console.log(document.getElementsByTagName('iframe'), 'hi');
+    });      
     </script>
   </div>
 
@@ -428,10 +437,6 @@ Refer <a href="https://webpack.js.org/configuration/dev-server/">webpack-dev-ser
 
 	
 		<div><a href="https://www.linkedin.com/in/guhan-me/" title="linkedin : guhan62" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#linkedin"></use></svg></a></div>
-    
-
-	
-		<div><a href="https://www.reddit.com/user/guen2" title="reddit : guen2" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#reddit"></use></svg></a></div>
     
 
 	

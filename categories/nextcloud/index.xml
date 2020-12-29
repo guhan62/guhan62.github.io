@@ -6,11 +6,7 @@
     <description>Recent content in nextcloud on guhan.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Jul 2020 17:57:44 -0400</lastBuildDate>
-    
-	<atom:link href="https://guhan62.github.io/categories/nextcloud/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 03 Jul 2020 17:57:44 -0400</lastBuildDate><atom:link href="https://guhan62.github.io/categories/nextcloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Guide] NextCloud on Ubuntu 18.04</title>
       <link>https://guhan62.github.io/blogs/guide-nextcloud-on-ubuntu-18.04/</link>

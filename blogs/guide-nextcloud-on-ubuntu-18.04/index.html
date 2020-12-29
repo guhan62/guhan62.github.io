@@ -21,7 +21,11 @@
             
               <a class="page-link" href="https://guhan62.github.io/blogs/">Blog</a>
             
-              <a class="page-link" href="https://guhan62.github.io/portfolio/HariGuhan_CV.pdf">Portfolio</a>
+              <a class="page-link" href="https://guhan62.github.io/courses/">Coursework</a>
+            
+              <a class="page-link" href="https://drive.google.com/file/d/1fVhBUqcdWz0OKWQzD2QAzGgkmIXv0WWV/view?usp=sharing">CV</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/portfolio/">Portfoloio</a>
             
               <a class="page-link" href="https://guhan62.github.io/reads/">Reads</a>
             
@@ -122,7 +126,7 @@ FLUSH PRIVILEGES<span class="p">;</span>
 <p>For good examples on Virtual Hosts refer to this <a href="https://httpd.apache.org/docs/2.4/vhosts/examples.html" title="Apache DOCS : vHost examples">doc</a>.<br>
 Virtual hosts are clones of the hosts with different virtual addresses but point to the address requested by a client. Now let&rsquo;s set up our site directory and set permissions.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># Link can be outdated you can go to link below for the active link</span>
-<span class="c1"># https://nextcloud.com/install/#instructions-server</span> 
+<span class="c1"># https://nextcloud.com/install/#instructions-server </span>
 
 wget https://download.nextcloud.com/server/releases/nextcloud-19.0.0.zip -O ~/Downloads
 unzip ~/Downloads/nextcloud-19.0.0.zip
@@ -173,7 +177,6 @@ You can check the status of your firewall with,<br>
 <p>Now we have setup the structure of our nextcloud application, and now let&rsquo;s fortify it.
 Virtual Hosts are multiple entry points to the same location. Imagine Heimdall as Apache and each entry-point into Asgard is a virtual host.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="c1"># Default Config /etc/apache2/sites-available/example.com.conf</span>
-
 sudo nano /etc/apache2/sites-available/nextcloud.conf
 </code></pre></div><ul>
 <li>Now writing the Apache configuration for our nextcloud instance, here the guide recommends getting a domain name for cheap on namecheap.com, name.com or godaddy.com rather than self-signed SSL certificates, thought self-signed are easy they are good in a LAN or a local setting not suitable over a Cloud setting, as Apache ships with a default SSL certificate If you are willing to go ahead with a domain name it would be easier for <strong>Let&rsquo;s Encrypt</strong> to issue certificates that are reliable and free.</li>
@@ -207,8 +210,8 @@ sudo systemctl restart apache2
 <ul>
 <li>Assuming <code>my_domain</code> is assigned with an A record with correct key/value pairs of the public IP from your Vultr Dashboard is setup with your domain vendor.</li>
 <li>If setting up with a procured domain <code>my_domain</code>, then open up the configuration file
-<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo nano /etc/apache2/sites-available/nextcloud.conf
-</code></pre></div><pre><code></code></pre></li>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo nano /etc/apache2/sites-available/nextcloud.conf<span class="sb">```</span>
+</code></pre></div></li>
 <li>Paste the following configuration
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;VirtualHost</span> <span class="err">*:80</span><span class="nt">&gt;</span>
 DocumentRoot /var/www/nextcloud
@@ -261,12 +264,12 @@ sudo apt-get install certbot python3-certbot-apache
 </li>
 <li>
 <p>Now add the <code>my_domain</code> to trusted domain in the nextcloud configuration found under <code>/var/www/nextcloud/config.php</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">&#39;trusted_domains&#39; =&gt;
-    array (
-    0 =&gt; &#39;localhost&#39;,
-    1 =&gt; &#39;my_domain&#39;,
-    2 =&gt; &#39;public_ip&#39;  # Replace with your public IP if required
-),
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="s1">&#39;trusted_domains&#39;</span> <span class="o">=&gt;</span>
+    <span class="k">array</span> <span class="p">(</span>
+    <span class="mi">0</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+    <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s1">&#39;my_domain&#39;</span><span class="p">,</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s1">&#39;public_ip&#39;</span>  <span class="c1"># Replace with your public IP if required
+</span><span class="c1"></span><span class="p">),</span>
 </code></pre></div></li>
 <li>
 <p>Open <code>https://my_domain</code> on your browser where you will be greeted with installation screen and do the final configuration setup for the Database or also can be done manually over the config.php.</p>
@@ -304,13 +307,18 @@ sudo apt-get install certbot python3-certbot-apache
   </div>
 
   
-  <div>
+  <div id="comments">
     <script src="https://utteranc.es/client.js"
     repo="guhan62/guhan62.github.io"
     issue-term="title"
     theme="github-light"
     crossorigin="anonymous"
     async>
+    </script>
+    <script  type="text/javascript">
+    document.querySelector('#comments').addEventListener('load', event => {
+      console.log(document.getElementsByTagName('iframe'), 'hi');
+    });      
     </script>
   </div>
 
@@ -339,10 +347,6 @@ sudo apt-get install certbot python3-certbot-apache
 
 	
 		<div><a href="https://www.linkedin.com/in/guhan-me/" title="linkedin : guhan62" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#linkedin"></use></svg></a></div>
-    
-
-	
-		<div><a href="https://www.reddit.com/user/guen2" title="reddit : guen2" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#reddit"></use></svg></a></div>
     
 
 	

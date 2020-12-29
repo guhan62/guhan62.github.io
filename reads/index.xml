@@ -5,10 +5,6 @@
     <link>https://guhan62.github.io/reads/</link>
     <description>Recent content in My Reads on guhan.me</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://guhan62.github.io/reads/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://guhan62.github.io/reads/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
