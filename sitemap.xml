@@ -61,26 +61,6 @@
   </url>
   
   <url>
-    <loc>https://guhan62.github.io/blogs/guide-nextcloud-on-ubuntu-18.04/</loc>
-    <lastmod>2020-07-03T17:57:44-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="x-default"
-                href="https://guhan62.github.io/blogs/guide-nextcloud-on-ubuntu-18.04/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://guhan62.github.io/categories/nextcloud/</loc>
-    <lastmod>2020-07-03T17:57:44-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="x-default"
-                href="https://guhan62.github.io/categories/nextcloud/"
-                />
-  </url>
-  
-  <url>
     <loc>https://guhan62.github.io/about/</loc>
     <xhtml:link
                 rel="alternate"
