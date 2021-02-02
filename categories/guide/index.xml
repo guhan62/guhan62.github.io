@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 13 Aug 2020 18:58:06 -0400</lastBuildDate><atom:link href="https://guhan62.github.io/categories/guide/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Under the Hood of React CRA</title>
-      <link>https://guhan62.github.io/blogs/_under-the-hood-of-react-cra/</link>
+      <link>https://guhan62.github.io/blogs/under-the-hood-of-react-cra/</link>
       <pubDate>Thu, 13 Aug 2020 18:58:06 -0400</pubDate>
       
-      <guid>https://guhan62.github.io/blogs/_under-the-hood-of-react-cra/</guid>
+      <guid>https://guhan62.github.io/blogs/under-the-hood-of-react-cra/</guid>
       <description>React Engine - Intro If you are aware of Webpack &amp;amp; Babel, I suggest you skip to the code part to set your own minimal React Server
 React CRA (Create-React-App), is a great package for devs getting started on React.
 It has the all the parts - loaders, configs, builds, templates, plugins - It is bootstrapped package for you, to get started working on your React App. It is recommended for everyone, who wants to learn React quick and people looking to learn their first JS framework.</description>
