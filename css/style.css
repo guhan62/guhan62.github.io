@@ -1,7 +1,7 @@
 /***
 
 ***/
-@import url("https://fonts.googleapis.com/css?family=Lora|Cousine|Prata|Work+Sans|Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Lora|Cousine|Prata|Open+Sans|Zilla+Slab");
 /*
 Big Shoulders Display
 */
@@ -22,8 +22,8 @@ body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,hr,dl,dd,ol,ul,figure{
 ::-moz-selection { background: #c0002a; color: white}
 ::selection { background: #c0002a; color: white }
 body{
-    font-family: "Open Sans",sans-serif;
-    font-size :18px;
+    font-family: "Zilla Slab",sans-serif;
+    font-size :22px;
     background-color:#f4f4f4;
     -webkit-text-size-adjust:100%;
     -webkit-font-feature-settings:"kern" 1;
@@ -66,7 +66,7 @@ body{
     font-family: "Open Sans";
 }*/
 h1,h2,h3,h4,h5,h6,p,blockquote,pre,ul,ol,dl,figure,.chroma{
-    margin-bottom: 20px
+    margin-bottom: 10px
 }
 main{
     display:block
@@ -220,7 +220,7 @@ a:hover{
     padding-bottom: 15px;
 }
 .card-descriptor p {
-    font-size: 17px;
+    font-size: 22px;
     margin-bottom: 5px;
 }
 .card-descriptor b {
@@ -274,13 +274,21 @@ a:hover{
     font-weight: bold;
 }
 .card-header p {
-    font-size: 12px;
+    font-size: 15px;
     margin-bottom: 5px;
+}
+/* Project CSS - Experimental */
+.project {
+    flex-direction: column;
+}
+.project .card{
+    max-width: 100%;
+    font-size: 20px;
 }
 .card {
     display: flex;
     flex-direction: column;
-    font-size: 15px;
+    font-size: 20px;
     max-width: 300px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -288,10 +296,11 @@ a:hover{
     margin-bottom: 20px;
 }
 .card ul {
-    margin-left: 10px;
+    margin-left: 20px;
 }
 .card li {
     list-style: disclosure-closed;
+    margin-bottom: 5px;
 }
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -339,10 +348,16 @@ pre,code{
     border-radius:3px;
     background-color:#272822;
 }
+/* Dark */
 code{
     color: white;
     padding:1px 5px
 }
+/* Light 
+code{
+    color: black;
+    padding:1px 5px
+}*/
 pre{
     padding:8px 12px;
     overflow-x:auto
@@ -627,6 +642,7 @@ table td{
         font-size:19.125px
     }
 }
+
 /* Background */ .chroma { color: #f8f8f2; background-color: #272822; }
 /* Error */ .chroma .err { color: #960050; background-color: #1e0010 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
@@ -687,6 +703,7 @@ table td{
 /* GenericStrong */ .chroma .gs { font-weight: bold }
 /* GenericSubheading */ .chroma .gu { color: #75715e }
 
+
 /* Copy to Clipboard */
 /* src: https://www.dannyguo.com/blog/how-to-add-copy-to-clipboard-buttons-to-code-blocks-in-hugo/ */
 .copy-code-button {
@@ -729,7 +746,7 @@ h1,h2,h3,h4,h5,h6{
     font-family:"Prata"
 }
 .post-list-item,.post-meta,.site-header,.site-footer{
-    font-family:"Work Sans"
+    font-family:"Zilla Slab",
 }
 /* Post Meta */
 .post-meta a::after{
