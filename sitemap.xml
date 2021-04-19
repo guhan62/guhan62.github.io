@@ -2,7 +2,7 @@
   
   <url>
     <loc>https://guhan62.github.io/blogs/</loc>
-    <lastmod>2020-08-13T18:58:06-04:00</lastmod>
+    <lastmod>2021-02-08T18:35:28-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="x-default"
@@ -12,7 +12,7 @@
   
   <url>
     <loc>https://guhan62.github.io/categories/</loc>
-    <lastmod>2020-08-13T18:58:06-04:00</lastmod>
+    <lastmod>2021-02-08T18:35:28-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="x-default"
@@ -22,11 +22,41 @@
   
   <url>
     <loc>https://guhan62.github.io/</loc>
-    <lastmod>2020-08-13T18:58:06-04:00</lastmod>
+    <lastmod>2021-02-08T18:35:28-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="x-default"
                 href="https://guhan62.github.io/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guhan62.github.io/categories/interesting-but-stupid/</loc>
+    <lastmod>2021-02-08T18:35:28-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="x-default"
+                href="https://guhan62.github.io/categories/interesting-but-stupid/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guhan62.github.io/categories/random/</loc>
+    <lastmod>2021-02-08T18:35:28-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="x-default"
+                href="https://guhan62.github.io/categories/random/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guhan62.github.io/categories/search/</loc>
+    <lastmod>2021-02-08T18:35:28-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="x-default"
+                href="https://guhan62.github.io/categories/search/"
                 />
   </url>
   

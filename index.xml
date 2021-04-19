@@ -6,7 +6,16 @@
     <description>Recent content on guhan.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Aug 2020 18:58:06 -0400</lastBuildDate><atom:link href="https://guhan62.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Feb 2021 18:35:28 -0500</lastBuildDate><atom:link href="https://guhan62.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bangs of the Duck</title>
+      <link>https://guhan62.github.io/blogs/bangs-of-the-duck/</link>
+      <pubDate>Mon, 08 Feb 2021 18:35:28 -0500</pubDate>
+      
+      <guid>https://guhan62.github.io/blogs/bangs-of-the-duck/</guid>
+      <description>DuckDuckGo Bangs - A quick search hack, that I stumbled upon! DuckDuckGo 🔥, is my personal favorite search engine which I have been using since my bachelor years. The primary reason is what I search for stops at the results page and has never followed me to the other webpages I visit. Read this post as I backtrack the response from DuckDuckGo when I searched mv file !$ and ended up with odd results.</description>
+    </item>
+    
     <item>
       <title>Under the Hood of React CRA</title>
       <link>https://guhan62.github.io/blogs/under-the-hood-of-react-cra/</link>
@@ -24,7 +33,7 @@ It has the all the parts - loaders, configs, builds, templates, plugins - It is 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://guhan62.github.io/privacy/</guid>
-      <description>Trackers  This site does not contain any personal trackers, the following services I use below has trackers Fonts : Google Fonts Hosted on Github Pages: Github Pages Comments read/written to GH Issues: Utterances Github App  </description>
+      <description>Trackers  Google Analytics : Tracking Overview Fonts : Google Fonts Hosted on Github Pages: Github Pages Comments read/written to GH Issues: Utterances Github App  </description>
     </item>
     
   </channel>

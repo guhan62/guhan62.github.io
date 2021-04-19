@@ -566,7 +566,7 @@ table td{
 }
 .blog-list-items {
     display: flex;
-    font-size: 20px;
+    font-size: 19px;
     padding: 5px;
 }
 .post-list-item {
@@ -574,7 +574,7 @@ table td{
     padding-left: 20px;
 }
 .post-meta{
-    font-size:1rem;
+    font-size:1em;
     color:#828282;
     font-weight: 600;
     white-space: nowrap;
@@ -719,8 +719,8 @@ table td{
     margin-right: 0;
 
     margin-bottom: -2px;
-    padding: 3px 8px;
-    font-size: 0.8em;
+    /*padding: 3px 8px;
+    font-size: 0.8em;*/
 }
 
 .copy-code-button:hover {

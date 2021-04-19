@@ -3,6 +3,8 @@ Disallow: /portfolio/
 Disallow: /privacy/
 
 
+Disallow: /blogs/bangs-of-the-duck/
+
 Disallow: /privacy/
 
 
