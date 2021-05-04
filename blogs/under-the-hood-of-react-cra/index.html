@@ -284,12 +284,12 @@ Refer <a href="https://webpack.js.org/configuration/dev-server/">webpack-dev-ser
 
 <span class="c1">// 2 - Webpack Concepts [Entry, Output, Loaders, plugins]
 </span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">entry</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="nx">__dirname</span><span class="p">,</span><span class="s1">&#39;src/js/index.js&#39;</span><span class="p">),</span>
+    <span class="nx">entry</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="mi">__</span><span class="nx">dirname</span><span class="p">,</span><span class="s1">&#39;src/js/index.js&#39;</span><span class="p">),</span>
     <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;dist/&#39;</span><span class="p">),</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="mi">__</span><span class="nx">dirname</span><span class="p">,</span> <span class="s1">&#39;dist/&#39;</span><span class="p">),</span>
         <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;bundle.js&#39;</span>
     <span class="p">},</span>
-  
+
 <span class="nx">module</span> <span class="o">:</span> <span class="p">{</span>
     <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
         <span class="p">{</span>
@@ -310,7 +310,7 @@ Refer <a href="https://webpack.js.org/configuration/dev-server/">webpack-dev-ser
     <span class="p">]</span>
 <span class="p">},</span>
 <span class="nx">plugins</span><span class="o">:</span><span class="p">[</span> <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
-    <span class="nx">template</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;public/index.html&#39;</span><span class="p">),</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="mi">__</span><span class="nx">dirname</span><span class="p">,</span> <span class="s1">&#39;public/index.html&#39;</span><span class="p">),</span>
     <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;index.html&#39;</span><span class="p">,</span>
     <span class="nx">favicon</span> <span class="o">:</span> <span class="s1">&#39;public/favicon.ico&#39;</span>  <span class="p">})</span> 
 <span class="p">],</span>
