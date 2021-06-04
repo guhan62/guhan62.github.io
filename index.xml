@@ -6,7 +6,37 @@
     <description>Recent content on guhan.me</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Feb 2021 18:35:28 -0500</lastBuildDate><atom:link href="https://guhan62.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 28 May 2021 00:07:44 -0400</lastBuildDate><atom:link href="https://guhan62.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learnings From a FAANG Interview</title>
+      <link>https://guhan62.github.io/blogs/learnings-from-a-faang-interview/</link>
+      <pubDate>Fri, 28 May 2021 00:07:44 -0400</pubDate>
+      
+      <guid>https://guhan62.github.io/blogs/learnings-from-a-faang-interview/</guid>
+      <description>FAANG Interview I failed my 1st FAANG Interview. It&amp;rsquo;s not like I have passed every other Interview I faced. Post my Bachelor&amp;rsquo;s I was filtered from the 1st round in many companies and post my Master&amp;rsquo;s companies are not ready to give me a chance (Not a complain, my profile does not fall in their radar). But I had assessed myself in my FAANG Interview and I was utterly disappointed with myself.</description>
+    </item>
+    
+    <item>
+      <title>Design Tic Tac Toe</title>
+      <link>https://guhan62.github.io/blogs/design-tic-tac-toe/</link>
+      <pubDate>Fri, 28 May 2021 00:05:10 -0400</pubDate>
+      
+      <guid>https://guhan62.github.io/blogs/design-tic-tac-toe/</guid>
+      <description>Low Level Design (LLD) Low level Design problems, are common during SDE Interviews and they are real fun, as the canvas is free to pain with just the size of the canvas (limitations/constrains) discussed by you and your interviewer. But overall it&amp;rsquo;s a fun exercise.
+Can we make it an even more fun exercise?? YEAH
+Fusion of Web with LLD Java Swings, Qt-C,C++,... , tKinter-Python these are complex to build for smaller problems, can we adopt anything easier for visualizing and OOPS fundamentals.</description>
+    </item>
+    
+    <item>
+      <title>Demystify the Priority in PriorityQueue</title>
+      <link>https://guhan62.github.io/blogs/demystify-the-priority-in-priorityqueue/</link>
+      <pubDate>Thu, 27 May 2021 18:41:18 -0400</pubDate>
+      
+      <guid>https://guhan62.github.io/blogs/demystify-the-priority-in-priorityqueue/</guid>
+      <description>Introduction Priority Queue, STL Container in C++ helps in working with Heap Data Structure to access elements based on Priority. Refer the References section below, to learn more about the Heaps &amp;amp; Priority Queue. In this post we will see examples and tricks that is useful when workin with priority Queues.
+What do we Demystify? The Compare Functions! and the custom Type T! - This is an useful starterpack for you to work directly on priorityQ ~ (I will address them as pQ from now!</description>
+    </item>
+    
     <item>
       <title>Bangs of the Duck</title>
       <link>https://guhan62.github.io/blogs/bangs-of-the-duck/</link>

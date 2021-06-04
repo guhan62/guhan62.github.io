@@ -3,6 +3,12 @@ Disallow: /portfolio/
 Disallow: /privacy/
 
 
+Disallow: /blogs/learnings-from-a-faang-interview/
+
+Disallow: /blogs/design-tic-tac-toe/
+
+Disallow: /blogs/demystify-the-priority-in-priorityqueue/
+
 Disallow: /blogs/bangs-of-the-duck/
 
 Disallow: /privacy/

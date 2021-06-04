@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demystify the Priority in PriorityQueue | guhan.me</title>
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5E24J31Q0"></script>
+</head><body>
+        <header class="site-header">
+    <div class="wrapper"><a class="site-title" rel="author" href="/">&lt;guhan/&gt;</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+  
+          <div class="trigger">
+            
+              <a class="page-link" href="https://guhan62.github.io/blogs/">Blog</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/courses/">Coursework</a>
+            
+              <a class="page-link" href="https://drive.google.com/file/d/1p18D6XH9fXTklWO-iM9FCUJufeTFf1MJ/view?usp=sharing">CV</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/portfolio/">Portfolio</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/reads/">Reads</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/about/">About</a>
+            
+          </div>
+        </nav>
+    </div>
+  </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title p-name">Demystify the Priority in PriorityQueue</h1>
+    <p class="post-meta">
+      4 Mins Read //
+      <time class="dt-published">May 27, 2021</time>
+    </p>
+    <hr class="post-content" />
+  </header>
+
+  <div class="post-content blog-post">
+      <h2 id="introduction">Introduction</h2>
+<p>Priority Queue, STL Container in C++ helps in working with Heap Data Structure to access elements based on Priority. Refer the References section below, to learn more about the Heaps &amp; Priority Queue. In this post we will see examples and tricks that is useful when workin with priority Queues.<br>
+<strong>What do we Demystify?</strong> The Compare Functions! and the custom Type T! - This is an useful starterpack for you to work directly on priorityQ ~ (I will address them as <strong>pQ</strong> from now!)</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> 
+<span class="k">class</span> <span class="nc">Container</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> 
+<span class="k">class</span> <span class="nc">Compare</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">less</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Container</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;&gt;</span>
+<span class="k">class</span> <span class="nc">priority_queue</span><span class="p">;</span>
+</code></pre></div><h2 id="a-general-use-case">A General Use-Case</h2>
+<p>In a <code>Queue</code> Data Structure has a FIFO (First-in First-out) technique on pushing, popping elements. What if we need the Queue, to have an ordering such that the element is either the <code>least/largest</code> you need at that moment get&rsquo;s returned.</p>
+<p>Assume, we have menu items from 10 Restaraunts and more items get added each minute that passes, I want to find the cheapest item on the Menu, at any moment. Just Sort the entries, each time and get the cheapest item. Simple, right? but what if there are millions of items, then sort each time is expensive on insert.</p>
+<ul>
+<li>What if the <code>Queue</code> is able to balance itself?</li>
+<li>How about giving priority for <code>OliveGarden</code>, because they pay premium for our platform? <em>I do not endorse them</em> 😅</li>
+</ul>
+<p>So <code>priority_queue</code> uses heap operations to give as acceptable and cheap runtimes for such problems!</p>
+<div class="highlight" title="dasds"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="hl"><span class="ln"> 1</span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">pQ</span><span class="p">;</span>
+</span><span class="hl"><span class="ln"> 2</span><span class="c1">// = priority_queue&lt;int, vector&lt;int&gt;&gt; pQ;
+</span></span><span class="hl"><span class="ln"> 3</span><span class="c1">// = priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pQ;
+</span></span><span class="ln"> 4</span><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sample</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">};</span>
+<span class="ln"> 5</span><span class="c1">// Push 1 10 -1 3 8
+</span><span class="ln"> 6</span><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="nl">i</span><span class="p">:</span><span class="n">sample</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 7</span>    <span class="n">pQ</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="ln"> 8</span><span class="p">}</span>
+<span class="ln"> 9</span><span class="c1">// Pops 10 8 3 1 -1
+</span><span class="ln">10</span><span class="c1"></span><span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">pQ</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+<span class="ln">11</span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pQ</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
+<span class="ln">12</span>    <span class="n">pQ</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+<span class="ln">13</span><span class="p">}</span>
+</code></pre></div><ul>
+<li><strong>Line 1-3</strong> : Show the same syntax but abstracted by default by C++</li>
+<li>for a <code>min_heap</code> we can use <code>std::lesser&lt;int&gt;</code> in our comparator</li>
+</ul>
+<p>But we need more, not a simple max/min <code>heap</code> -&gt; let&rsquo;s demystify another layer from the priority_queue!</p>
+<h2 id="priority-kitchen">Priority Kitchen</h2>
+<p>Let&rsquo;s define a user-defined type with a custom ordering as a member function where the <code>operator &lt;</code> or <code>operator &gt;</code> can be overloaded to have defined ordering on our struct!<br>
+Here the <code>menuItem</code> structure has an <code>operator&lt;</code> that allows for <code>&lt;</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">struct</span> <span class="nc">menuItem</span> <span class="p">{</span>
+    <span class="kt">float</span> <span class="n">price</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">item</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">store</span><span class="p">;</span>
+    <span class="c1">// 0 -&gt; Free Customer, 1 -&gt; Pro Customer, 2 -&gt; Super Pro Customer
+</span><span class="c1"></span>    <span class="c1">// Customer as in Subscribed Restaraunteer
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">priority</span><span class="p">;</span>
+    <span class="n">menuItem</span><span class="p">(</span><span class="n">string</span> <span class="n">store</span><span class="p">,</span> <span class="n">string</span> <span class="n">item</span><span class="p">,</span> <span class="kt">float</span> <span class="n">price</span><span class="p">)</span> <span class="o">:</span> \
+        <span class="n">store</span><span class="p">(</span><span class="n">store</span><span class="p">),</span> <span class="n">price</span><span class="p">(</span><span class="n">price</span><span class="p">),</span> <span class="n">item</span><span class="p">(</span><span class="n">item</span><span class="p">),</span> <span class="n">priority</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">menuItem</span><span class="p">(</span><span class="n">string</span> <span class="n">store</span><span class="p">,</span> <span class="n">string</span> <span class="n">item</span><span class="p">,</span> <span class="kt">float</span> <span class="n">price</span><span class="p">,</span><span class="kt">int</span> <span class="n">priority</span><span class="p">)</span> <span class="o">:</span> \
+        <span class="n">store</span><span class="p">(</span><span class="n">store</span><span class="p">),</span> <span class="n">price</span><span class="p">(</span><span class="n">price</span><span class="p">),</span> <span class="n">item</span><span class="p">(</span><span class="n">item</span><span class="p">),</span> <span class="n">priority</span><span class="p">(</span><span class="n">priority</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="c1">// Less Price
+</span><span class="c1"></span>    <span class="kt">bool</span> <span class="k">operator</span> <span class="o">&lt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">menuItem</span><span class="o">&amp;</span> <span class="n">item</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="n">price</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div><p>Now defining function objects to priority Queue. This premium ordering compares both price &amp; priority.</p>
+<div class="highlight"><pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">struct</span> <span class="nc">premiumOrdering</span> <span class="p">{</span>
+    <span class="c1">// Items sorted by Price - Min
+</span><span class="c1"></span>    <span class="kt">bool</span> <span class="nf">operator</span><span class="p">()</span> <span class="p">(</span><span class="k">struct</span> <span class="nc">menuItem</span><span class="o">&amp;</span> <span class="n">item1</span><span class="p">,</span> <span class="k">struct</span> <span class="nc">menuItem</span><span class="o">&amp;</span> <span class="n">item2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// When Price is Lower, push, the top priority customer on top
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">item1</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="n">item2</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">item1</span><span class="p">.</span><span class="n">priority</span> <span class="o">&gt;</span> <span class="n">item2</span><span class="p">.</span><span class="n">priority</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">item1</span><span class="p">.</span><span class="n">priority</span> <span class="o">&lt;</span> <span class="n">item2</span><span class="p">.</span><span class="n">priority</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div><p>Now let&rsquo;s define the Queues and see an example.</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">menuItem</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">menuItem</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">less</span><span class="o">&lt;</span><span class="n">menuItem</span><span class="o">&gt;&gt;</span> <span class="n">min_price_Q</span><span class="p">;</span>
+<span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">menuItem</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">menuItem</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">premiumOrdering</span><span class="o">&gt;</span> <span class="n">top_partner_Q</span><span class="p">;</span>
+    
+<span class="n">menuItem</span> <span class="nf">item1</span><span class="p">(</span><span class="s">&#34;Tandoori Globe&#34;</span><span class="p">,</span><span class="s">&#34;Chicken Briyani&#34;</span><span class="p">,</span> <span class="mf">14.99</span><span class="p">),</span> \
+    <span class="n">item2</span><span class="p">(</span><span class="s">&#34;Tandoori Globe&#34;</span><span class="p">,</span><span class="s">&#34;Mutton Briyani&#34;</span><span class="p">,</span> <span class="mf">18.99</span><span class="p">),</span> \
+    <span class="n">item3</span><span class="p">(</span><span class="s">&#34;Pot Mirchi&#34;</span><span class="p">,</span><span class="s">&#34;Chicken Briyani&#34;</span><span class="p">,</span> <span class="mf">16.99</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> \
+    <span class="n">item4</span><span class="p">(</span><span class="s">&#34;Pot Mirchi&#34;</span><span class="p">,</span><span class="s">&#34;Mutton Briyani&#34;</span><span class="p">,</span> <span class="mf">14.99</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> \
+    <span class="n">item5</span><span class="p">(</span><span class="s">&#34;Briyani Dome&#34;</span><span class="p">,</span> <span class="s">&#34;Chickem Briyani&#34;</span><span class="p">,</span> <span class="mf">19.99</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="n">min_price_Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">item1</span><span class="p">),</span> <span class="n">min_price_Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">item2</span><span class="p">),</span> \
+    <span class="n">min_price_Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">item3</span><span class="p">),</span> <span class="n">min_price_Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">item4</span><span class="p">),</span> \
+    <span class="n">min_price_Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">item5</span><span class="p">);</span>
+<span class="n">top_partner_Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">item1</span><span class="p">),</span> <span class="n">top_partner_Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">item2</span><span class="p">),</span> \
+    <span class="n">top_partner_Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">item3</span><span class="p">),</span> <span class="n">top_partner_Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">item4</span><span class="p">),</span> \
+    <span class="n">top_partner_Q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">item5</span><span class="p">);</span>
+</code></pre></div><p>Shall we see the beautiful output, that our system generates on popping!</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">// Items Ordered by their pricing using the `less&lt;menuItem&gt;` custom compare&lt;T&gt;
+</span><span class="c1">// overloaded as a member function in the struct
+</span><span class="c1"></span><span class="n">Tandoori</span> <span class="n">Globe</span> <span class="n">Chicken</span> <span class="n">Briyani</span> <span class="mf">14.99</span> <span class="mi">0</span>
+<span class="n">Pot</span> <span class="n">Mirchi</span> <span class="n">Mutton</span> <span class="n">Briyani</span> <span class="mf">14.99</span> <span class="mi">1</span>
+<span class="n">Pot</span> <span class="n">Mirchi</span> <span class="n">Chicken</span> <span class="n">Briyani</span> <span class="mf">16.99</span> <span class="mi">1</span>
+<span class="n">Tandoori</span> <span class="n">Globe</span> <span class="n">Mutton</span> <span class="n">Briyani</span> <span class="mf">18.99</span> <span class="mi">0</span>
+<span class="n">Briyani</span> <span class="n">Dome</span> <span class="n">Chickem</span> <span class="n">Briyani</span> <span class="mf">19.99</span> <span class="mi">2</span>
+
+<span class="c1">// Items Ordered by their pricing &amp; an addition priority variable using the compare object
+</span><span class="c1"></span><span class="n">Pot</span> <span class="n">Mirchi</span> <span class="n">Mutton</span> <span class="n">Briyani</span> <span class="mf">14.99</span> <span class="mi">1</span>
+<span class="n">Pot</span> <span class="n">Mirchi</span> <span class="n">Chicken</span> <span class="n">Briyani</span> <span class="mf">16.99</span> <span class="mi">1</span>
+<span class="n">Briyani</span> <span class="n">Dome</span> <span class="n">Chickem</span> <span class="n">Briyani</span> <span class="mf">19.99</span> <span class="mi">2</span>
+<span class="n">Tandoori</span> <span class="n">Globe</span> <span class="n">Chicken</span> <span class="n">Briyani</span> <span class="mf">14.99</span> <span class="mi">0</span>
+<span class="n">Tandoori</span> <span class="n">Globe</span> <span class="n">Mutton</span> <span class="n">Briyani</span> <span class="mf">18.99</span> <span class="mi">0</span>
+</code></pre></div><p>Now Reader<!-- raw HTML omitted --> go ahead and solve this LeetCode question, <a href="https://leetcode.com/problems/single-threaded-cpu/">Single Threaded CPU</a> also refer to my <a href="https://leetcode.com/problems/single-threaded-cpu/discuss/1165656/C%2B%2B-or-The-Inefficient-Single-Threaded-CPU-or-600ms-151MB">LC Discussion Post</a>, regarding hints on this problem.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/container/priority_queue">C++ Reference Doc for priorityQ</a></li>
+<li><a href="https://www.hackerearth.com/practice/notes/heaps-and-priority-queues/">HE Notes on Heap</a></li>
+<li><a href="https://www.youtube.com/watch?v=GWgobwdUCtE">YT: Weak, Linear Ordering Principle</a></li>
+</ul>
+
+  </div>
+
+  <div class="tag-category">
+    <p>categories: <span class="cat-list">
+
+    
+    [
+        
+            <a href="https://guhan62.github.io/categories/c&#43;&#43;/">C&#43;&#43;</a>
+            
+        
+            , <a href="https://guhan62.github.io/categories/guide/">guide</a>
+            
+        
+    ]
+    
+</span></p>
+  </div>
+
+  
+  <div id="comments">
+    <script src="https://utteranc.es/client.js"
+    repo="guhan62/guhan62.github.io"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"
+    async>
+    </script>
+    
+  </div>
+
+  
+    <script src="/js/copy-code-button.js"></script>
+
+
+            </div>
+        </main><footer class="site-footer h-card">
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col-1">
+        <h2 class="footer-heading">Hari Guhan T</h2>
+        <ul class="contact-list">
+          <li><a class="u-email" href="mailto:hariguhan@tuta.io">hariguhan AT tuta DOT io</a></li>
+          <li><a class="u-email" href="mailto:htsgs3@gmail.com">htsgs3 AT gmail DOT com</a></li>
+          <li><a class="u-email" href="mailto:hariguha@buffalo.edu">hariguha AT buffalo DOT edu</a></li>
+        </ul>
+      </div>
+      <div class="footer-col-2">
+        <div class="social-media-list">
+          
+	
+		<div><a href="https://github.com/guhan62" title="github : guhan62" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#github"></use></svg></a></div>
+    
+
+	
+		<div><a href="https://www.linkedin.com/in/guhan-me/" title="linkedin : guhan62" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#linkedin"></use></svg></a></div>
+    
+
+	
+		<div><a href="https://twitter.com/guen2" title="twitter : guen2" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#twitter"></use></svg></a></div>
+    
+
+        </div>
+      </div>
+      <div class="footer-col-3">
+        <div class="credits-ribbon">
+	
+		<p></p>
+		<p>MIT License &copy; 2020 Guhan</p>
+		<a href="/privacy">Privacy</a>
+	
+</div>
+      </div>
+      
+    </div>
+    
+  </div>
+</footer><script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-T5E24J31Q0');
+        </script>
+    </body>
+</html>

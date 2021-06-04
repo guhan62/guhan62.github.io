@@ -2,7 +2,7 @@
   
   <url>
     <loc>https://guhan62.github.io/blogs/</loc>
-    <lastmod>2021-02-08T18:35:28-05:00</lastmod>
+    <lastmod>2021-05-28T00:07:44-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="x-default"
@@ -12,7 +12,7 @@
   
   <url>
     <loc>https://guhan62.github.io/categories/</loc>
-    <lastmod>2021-02-08T18:35:28-05:00</lastmod>
+    <lastmod>2021-05-28T00:07:44-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="x-default"
@@ -22,11 +22,61 @@
   
   <url>
     <loc>https://guhan62.github.io/</loc>
-    <lastmod>2021-02-08T18:35:28-05:00</lastmod>
+    <lastmod>2021-05-28T00:07:44-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="x-default"
                 href="https://guhan62.github.io/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guhan62.github.io/categories/guide/</loc>
+    <lastmod>2021-05-28T00:07:44-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="x-default"
+                href="https://guhan62.github.io/categories/guide/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guhan62.github.io/categories/thoughts/</loc>
+    <lastmod>2021-05-28T00:07:44-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="x-default"
+                href="https://guhan62.github.io/categories/thoughts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guhan62.github.io/categories/design/</loc>
+    <lastmod>2021-05-28T00:05:10-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="x-default"
+                href="https://guhan62.github.io/categories/design/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guhan62.github.io/categories/ts/</loc>
+    <lastmod>2021-05-28T00:05:10-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="x-default"
+                href="https://guhan62.github.io/categories/ts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://guhan62.github.io/categories/c&#43;&#43;/</loc>
+    <lastmod>2021-05-27T18:41:18-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="x-default"
+                href="https://guhan62.github.io/categories/c&#43;&#43;/"
                 />
   </url>
   
@@ -47,16 +97,6 @@
                 rel="alternate"
                 hreflang="x-default"
                 href="https://guhan62.github.io/categories/search/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://guhan62.github.io/categories/guide/</loc>
-    <lastmod>2020-08-13T18:58:06-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="x-default"
-                href="https://guhan62.github.io/categories/guide/"
                 />
   </url>
   

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>thoughts on guhan.me</title>
+    <link>https://guhan62.github.io/categories/thoughts/</link>
+    <description>Recent content in thoughts on guhan.me</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 May 2021 00:07:44 -0400</lastBuildDate><atom:link href="https://guhan62.github.io/categories/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learnings From a FAANG Interview</title>
+      <link>https://guhan62.github.io/blogs/learnings-from-a-faang-interview/</link>
+      <pubDate>Fri, 28 May 2021 00:07:44 -0400</pubDate>
+      
+      <guid>https://guhan62.github.io/blogs/learnings-from-a-faang-interview/</guid>
+      <description>FAANG Interview I failed my 1st FAANG Interview. It&amp;rsquo;s not like I have passed every other Interview I faced. Post my Bachelor&amp;rsquo;s I was filtered from the 1st round in many companies and post my Master&amp;rsquo;s companies are not ready to give me a chance (Not a complain, my profile does not fall in their radar). But I had assessed myself in my FAANG Interview and I was utterly disappointed with myself.</description>
+    </item>
+    
+  </channel>
+</rss>

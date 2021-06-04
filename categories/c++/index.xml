@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on guhan.me</title>
+    <link>https://guhan62.github.io/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on guhan.me</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 May 2021 18:41:18 -0400</lastBuildDate><atom:link href="https://guhan62.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Demystify the Priority in PriorityQueue</title>
+      <link>https://guhan62.github.io/blogs/demystify-the-priority-in-priorityqueue/</link>
+      <pubDate>Thu, 27 May 2021 18:41:18 -0400</pubDate>
+      
+      <guid>https://guhan62.github.io/blogs/demystify-the-priority-in-priorityqueue/</guid>
+      <description>Introduction Priority Queue, STL Container in C++ helps in working with Heap Data Structure to access elements based on Priority. Refer the References section below, to learn more about the Heaps &amp;amp; Priority Queue. In this post we will see examples and tricks that is useful when workin with priority Queues.
+What do we Demystify? The Compare Functions! and the custom Type T! - This is an useful starterpack for you to work directly on priorityQ ~ (I will address them as pQ from now!</description>
+    </item>
+    
+  </channel>
+</rss>

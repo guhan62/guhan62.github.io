@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Design Tic Tac Toe | guhan.me</title>
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5E24J31Q0"></script>
+</head><body>
+        <header class="site-header">
+    <div class="wrapper"><a class="site-title" rel="author" href="/">&lt;guhan/&gt;</a><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewBox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+  
+          <div class="trigger">
+            
+              <a class="page-link" href="https://guhan62.github.io/blogs/">Blog</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/courses/">Coursework</a>
+            
+              <a class="page-link" href="https://drive.google.com/file/d/1p18D6XH9fXTklWO-iM9FCUJufeTFf1MJ/view?usp=sharing">CV</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/portfolio/">Portfolio</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/reads/">Reads</a>
+            
+              <a class="page-link" href="https://guhan62.github.io/about/">About</a>
+            
+          </div>
+        </nav>
+    </div>
+  </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title p-name">Design Tic Tac Toe</h1>
+    <p class="post-meta">
+      3 Mins Read //
+      <time class="dt-published">May 28, 2021</time>
+    </p>
+    <hr class="post-content" />
+  </header>
+
+  <div class="post-content blog-post">
+      <h2 id="low-level-design-lld">Low Level Design (LLD)</h2>
+<p>Low level Design problems, are common during SDE Interviews and they are real fun, as the canvas is free to pain with just the size of the canvas (limitations/constrains) discussed by you and your interviewer. But overall it&rsquo;s a fun exercise.<br>
+Can we make it an even more fun exercise?? <strong>YEAH</strong></p>
+<h2 id="fusion-of-web-with-lld">Fusion of Web with LLD</h2>
+<p><code>Java Swings, Qt-C,C++,... , tKinter-Python</code> these are complex to build for smaller problems, can we adopt anything easier for visualizing and OOPS fundamentals.<br>
+<strong>TypeScript</strong> to the rescue, we can design our application Low-Level conceptually with a neat interface for your interviewer to play on!
+This blog will discuss <code>typeScript</code> with some examples, so that even you could design your own!</p>
+<h2 id="defining-classes-headers">Defining Classes, Headers</h2>
+<ul>
+<li>Interfaces in typeScript, to define abstracted structure, what if you want optional fields simple add a <code>?</code> in your variable <code>player1_Name?</code> - This interface holds the configuration for the Game.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">gameConfig</span> <span class="p">{</span>
+    <span class="nx">player1_Name?</span>: <span class="kt">String</span><span class="p">,</span>
+    <span class="nx">player2_Name?</span>: <span class="kt">String</span><span class="p">,</span>
+    <span class="nx">totalGames</span>: <span class="kt">number</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">defaultConfig</span>: <span class="kt">gameConfig</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="nx">player1_Name</span><span class="o">:</span><span class="s2">&#34;Tom&#34;</span><span class="p">,</span>
+    <span class="nx">player2_Name</span><span class="o">:</span><span class="s2">&#34;Jerry&#34;</span><span class="p">,</span>
+    <span class="nx">totalGames</span>: <span class="kt">0</span>
+<span class="p">}</span>
+</code></pre></div><ul>
+<li>Classes, are same - we just specify the constructor with <code>constructor</code> Keyword and we export the Class as a module so other .ts files can this file</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">class</span> <span class="nx">Board</span> <span class="p">{</span>
+    <span class="c1">// Cells: 0 - Empty, 1 - &#39;X&#39;, 2 - &#39;O&#39;
+</span><span class="c1"></span>    <span class="nx">grid</span>:<span class="kt">number</span><span class="p">[][];</span>
+    <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">grid</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="p">}</span>
+    <span class="kr">public</span> <span class="nx">resetBoard() {</span><span class="p">}</span>
+    <span class="kr">private</span> <span class="nx">playMove() {</span><span class="p">}</span>
+    <span class="kr">private</span> <span class="nx">checkBoard() {</span><span class="p">}</span>
+    <span class="kr">private</span> <span class="nx">declareWinner() {</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span><span class="nx">Board</span><span class="p">};</span>
+</code></pre></div><ul>
+<li>Declaring Objects</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kd">var</span> <span class="nx">board</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Board</span><span class="p">();</span>
+</code></pre></div><p>That&rsquo;s it right? - well we do have inheritance using the <code>extends</code> keyword. But a ticTacToe design does not need that, our focus here will to design 2 Classes, <code>Scoreboard</code>, <code>Board</code> where the scope of <code>Scoreboard</code> will remain until the closure of application.<br>
+While the <code>Board</code> is reset after closure of application or <code>Reset Button</code> is clicked.</p>
+<h4 id="well-enough-of-the-obvious-where-does-the-real-magic-happen">Well enough of the Obvious, where does the real magic happen?</h4>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="hl"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">scoreboardBody</span>: <span class="kt">HTMLElement</span> <span class="o">|</span> <span class="kt">any</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;scoreboard_body&#34;</span><span class="p">)</span>
+</span><span class="hl"><span class="ln"> 2</span><span class="kr">const</span> <span class="nx">boardCells</span>: <span class="kt">HTMLElement</span> <span class="o">|</span> <span class="kt">any</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&#34;.grid-cell&#34;</span><span class="p">)</span>
+</span><span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="kr">const</span> <span class="nx">scoreboard</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Scoreboard</span><span class="p">(</span><span class="nx">scoreboardBody</span><span class="p">);</span>
+<span class="ln"> 5</span><span class="kd">var</span> <span class="nx">board</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Board</span><span class="p">(,</span><span class="nx">boardCells</span><span class="p">,</span> <span class="nx">scoreboard</span><span class="p">);</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="kr">class</span> <span class="nx">Board</span> <span class="p">{</span>
+<span class="ln"> 9</span>    <span class="nx">grid</span>:<span class="kt">number</span><span class="p">[][];</span>
+<span class="ln">10</span>    <span class="nx">boardCells</span><span class="o">!:</span> <span class="nx">HTMLElement</span><span class="p">[];</span>
+<span class="ln">11</span>    <span class="nx">curMove</span>: <span class="kt">number</span>
+<span class="ln">12</span>    <span class="nx">gameStart</span><span class="o">!:</span> <span class="nb">Date</span>
+<span class="ln">13</span>    <span class="nx">moves</span>: <span class="kt">number</span>
+<span class="ln">14</span>    <span class="nx">scoreboard</span>: <span class="kt">Scoreboard</span>
+<span class="ln">15</span>    <span class="nx">CPU</span>:<span class="kt">boolean</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="ln">16</span>    <span class="kr">constructor</span><span class="p">(</span><span class="nx">boardCells</span>:<span class="kt">HTMLElement</span><span class="p">[],</span> <span class="nx">scoreboard</span>: <span class="kt">Scoreboard</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">17</span>        <span class="k">this</span><span class="p">.</span><span class="nx">grid</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+<span class="ln">18</span>        <span class="k">this</span><span class="p">.</span><span class="nx">moves</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="ln">19</span>        <span class="k">this</span><span class="p">.</span><span class="nx">boardCells</span> <span class="o">=</span> <span class="nx">boardCells</span>
+<span class="ln">20</span>        <span class="k">this</span><span class="p">.</span><span class="nx">scoreboard</span> <span class="o">=</span> <span class="nx">scoreboard</span>
+<span class="hl"><span class="ln">21</span>        <span class="k">this</span><span class="p">.</span><span class="nx">boardCells</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">cell</span>:<span class="kt">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class="hl"><span class="ln">22</span>            <span class="nx">cell</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">evt</span>:<span class="kt">Event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class="hl"><span class="ln">23</span>                <span class="kr">const</span> <span class="nx">gridCell</span>: <span class="kt">HTMLElement</span> <span class="o">|</span> <span class="kt">any</span> <span class="o">=</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">target</span>
+</span><span class="hl"><span class="ln">24</span>                <span class="kr">const</span> <span class="nx">gridIdx</span>:<span class="kt">number</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">target</span><span class="p">[</span><span class="s2">&#34;id&#34;</span><span class="p">][</span><span class="mi">4</span><span class="p">])</span>
+</span><span class="hl"><span class="ln">25</span>                <span class="k">if</span><span class="p">(</span><span class="nx">gridCell</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span><span class="hl"><span class="ln">26</span>                    <span class="k">this</span><span class="p">.</span><span class="nx">playMove</span><span class="p">(</span><span class="nx">gridIdx</span><span class="p">,</span> <span class="nx">gridCell</span><span class="p">)</span>
+</span><span class="hl"><span class="ln">27</span>            <span class="p">})</span>
+</span><span class="hl"><span class="ln">28</span>        <span class="p">});</span>
+</span><span class="ln">29</span>    <span class="p">}</span>
+<span class="ln">30</span><span class="p">}</span>
+</code></pre></div><p>Now we have defined access with types, to access DOM elements, and we define a eventListener in the constructor phase, to access these elements designed by our code.</p>
+<ul>
+<li><strong>Line 2</strong> - Gives access to all the grid-cells from the DOM, which are div with classes.</li>
+<li><strong>Line 21</strong> - Attach a listener, and call the <code>playMove</code> method internally to do all the controlling logic.</li>
+</ul>
+<p>Simple!, this is the <code>key</code> to get a person who can understand <code>js</code> easily - now you could go ahead and design the game!</p>
+<h2 id="wait-what-about-compilation">Wait, what about compilation?</h2>
+<ul>
+<li>Yeah this was tricky, following the handbook got me nowhere, saw how the compilation was done for general <code>Node.js</code> and it worked out, I used the <code>require.js</code> module, you could refer to my <a href="https://github.com/guhan62/ticTacToe/blob/master/tsconfig.json">tsconfig.json</a>.</li>
+<li>Once you compiled the project and got the output file generated by the <a href="https://code.visualstudio.com/docs/typescript/typescript-compiling">typescript compiler</a></li>
+<li>Add these snippets inside your index.html</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">...
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://requirejs.org/docs/release/2.3.6/minified/require.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;./scripts/App.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="nx">requirejs</span><span class="p">([</span><span class="s1">&#39;App&#39;</span><span class="p">]);</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><ul>
+<li>That&rsquo;s it, refer to source to learn more <a href="https://github.com/guhan62/ticTacToe">ticTacToe .ts design Source Code</a> or <a href="https://guhan62.github.io/ticTacToe/">just play the game</a></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://guhan62.github.io/ticTacToe/">My ticTacToe Playground URL</a></li>
+<li><a href="https://github.com/guhan62/ticTacToe">ticTacToe .ts design Source Code</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/intro.html">ts Handbook</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/dom-manipulation.html">ts DOM Manipulation</a></li>
+</ul>
+
+  </div>
+
+  <div class="tag-category">
+    <p>categories: <span class="cat-list">
+
+    
+    [
+        
+            <a href="https://guhan62.github.io/categories/design/">design</a>
+            
+        
+            , <a href="https://guhan62.github.io/categories/ts/">ts</a>
+            
+        
+            , <a href="https://guhan62.github.io/categories/guide/">guide</a>
+            
+        
+    ]
+    
+</span></p>
+  </div>
+
+  
+  <div id="comments">
+    <script src="https://utteranc.es/client.js"
+    repo="guhan62/guhan62.github.io"
+    issue-term="title"
+    theme="github-light"
+    crossorigin="anonymous"
+    async>
+    </script>
+    
+  </div>
+
+  
+    <script src="/js/copy-code-button.js"></script>
+
+
+            </div>
+        </main><footer class="site-footer h-card">
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col-1">
+        <h2 class="footer-heading">Hari Guhan T</h2>
+        <ul class="contact-list">
+          <li><a class="u-email" href="mailto:hariguhan@tuta.io">hariguhan AT tuta DOT io</a></li>
+          <li><a class="u-email" href="mailto:htsgs3@gmail.com">htsgs3 AT gmail DOT com</a></li>
+          <li><a class="u-email" href="mailto:hariguha@buffalo.edu">hariguha AT buffalo DOT edu</a></li>
+        </ul>
+      </div>
+      <div class="footer-col-2">
+        <div class="social-media-list">
+          
+	
+		<div><a href="https://github.com/guhan62" title="github : guhan62" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#github"></use></svg></a></div>
+    
+
+	
+		<div><a href="https://www.linkedin.com/in/guhan-me/" title="linkedin : guhan62" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#linkedin"></use></svg></a></div>
+    
+
+	
+		<div><a href="https://twitter.com/guen2" title="twitter : guen2" target="_blank"><svg class="svg-icon"><use xlink:href="/images/glyph.svg#twitter"></use></svg></a></div>
+    
+
+        </div>
+      </div>
+      <div class="footer-col-3">
+        <div class="credits-ribbon">
+	
+		<p></p>
+		<p>MIT License &copy; 2020 Guhan</p>
+		<a href="/privacy">Privacy</a>
+	
+</div>
+      </div>
+      
+    </div>
+    
+  </div>
+</footer><script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-T5E24J31Q0');
+        </script>
+    </body>
+</html>
