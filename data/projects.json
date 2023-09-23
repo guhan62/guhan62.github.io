@@ -1,0 +1,166 @@
+[
+    { 
+        "title" : "GuDB - fork of Apache Spark Catalyzer",
+        "date": "Feb - May, 2021",
+        "content" : [
+            "Gutted version of Spark Catalyzer provided - had to build a Database that works efficiently for SELECT queries", 
+            "TPC-H Standard Queries were used to benchmark the database on 0.1 Scaling Factor",
+            "Pure Scala implementation with leveraging Spark Catalyzers Logical Plan, types, APIs",
+            "Implemented View Materializer, storing Statistics on Lineitem Tables to achieve faster performance for Query 1",
+            "Query Optimizer traits developed using Relational Algebra Tricks",
+            "Building Indexes on tables - to implement SortMerge Join and faster equality joins",
+            "Course Project for CSE562, implemented across semester with 4 Checkpoints"
+        ],
+        "link_url": "",
+        "project_url": "",
+        "members" : [],
+        "mentors": ["Prof. Oliver Kennedy"]
+    },
+    { 
+        "title" : "Software Defined Routing",
+        "date": "Apr - May, 2021",
+        "content" : [
+            "SDN - Graded Controller, with N Routers defined with an initial topology, where the network will use Bellman-Ford algorithm to stabilize the graph", 
+            "Pure C++ with inet, socket programming with every Router implementing context switch based on the select() API in sockets", 
+            "Implemented Crash, Weighted Updated, UDP Gossip among Neighbour Routers",
+            "Data Plane of forwarding packets from source -> destination based on shortest path",
+            "Course Project for CSE589"
+        ],
+        "link_url": "",
+        "project_url": "",
+        "members" : [],
+        "mentors": ["Prof. XiangHang Mi"]
+    },
+    { 
+        "title" : "RL Hyperparameter Tuning with Bayesian Optimization",
+        "date": "Oct - Dec, 2020",
+        "content" : [
+            "Tuning DQN, Q-Learning RL hyperparameters using Bayesian Optimization for OpenGym environments - Taxi (Grid), Lunar Lander(Box 2D)", 
+            "Influencing Explore/Exploit trade-off for standard Bayesian opt techniques using Gaussian Parameters (Kernel, Mean) and formulae parameters of EI and others",
+            "Comparison with other standard optimzations, and studying the various Optimzation Techniques",
+            "Worked on Taxi Problem, analyzing all algorithms EI, PI & Thompson Sampling influencing the optmization by controlling gaussian and algortihm parameters",
+            "Course Project for CSE610"
+        ],
+        "link_url": "",
+        "project_url": "",
+        "members" : ["Shathesh Kumar", "Vinay Kumar"],
+        "mentors": ["Prof. Varun Chandola"]
+    },
+    { 
+        "title" : "Classroom Scanner",
+        "date": "Sept - Dec, 2020",
+        "content" : [
+            "Classroom Scanner, a solution for the K12 community teachers which help in uploading of Classwork directly to coded folders scanning from the application", 
+            "Teachers create a Coded Folder in the Folders UI, students write the code on assignments which on scan gets submitted to the folder",
+            "On Scan of documents, the system has an OCR snipper to extract the header section of top page and parses to find the Assignment code to reduce the manual work of teachers in archiving these documents",
+            "Project developed with ReactJS, Laravel & React Native (both iOS & Android)",
+            "Developed the Frontend interface for the project including the Mobile application"
+        ],
+        "link_url": "https://classroomscanner.org",
+        "project_url": "",
+        "members" : ["Shathesh Kumar", "Venugopal Chinthappareddy", "Kavitha Mohan"],
+        "mentors": ["Prof. Alan Hunt", "Prof. Jeff Brunskill"]
+    },
+    { 
+        "title" : "Dijkstra's Algorithm Verification with Frama-C",
+        "date": "Nov - Dec, 2020",
+        "content" : [
+            "Dijkstra's algorithm, is an example of a Greedy Alogrithm to find the shortest path of a graph with no negative weights",
+            "We used Frama-C to prove the properties in the algortihm to prove the correctness - Relaxation Property, Path from Source", 
+            "Every reachable vertice from Source, has a Stack which indicates the path from the source",
+            "Stack data structure operations also were proved using Frama-C (non-mutation & mutation properties)",
+            "CSE715 Seminar Project"
+        ],
+        "link_url": "",
+        "project_url": "",
+        "members" : ["Venugopal Chinthappareddy"],
+        "mentors": ["Prof. Bharath Jayaraman"]
+    },
+    { 
+        "title" : "ML Fairness in Judicial Systems",
+        "date": "Apr - May, 2020",
+        "content" : [
+            "Designing a new System for the US courts, taking ProPublica's dataset on analysis of COMPAS system", 
+            "Using various Fairness Techniques and unbiased features with no direct co-relation to either race/sex",
+            "tasked to design a system with Feature Engineering, Model selection and using Fairness techniques of post-processing",
+            "Including Secondary optmization criterion to achieve a lower cost, as incorrect classification cost the Government and the public",
+            "CS574 Internal - Market Submission Winners"
+        ],
+        "link_url": "",
+        "project_url": "",
+        "members" : ["Shathesh Kumar", "Venugopal Chinthappareddy"],
+        "mentors": ["Prof. Varun Chandola"]
+    },
+    { 
+        "title" : "Pintos OS Development",
+        "date": "Feb - May, 2020",
+        "content" : [
+            "Pintos C based operating System emulated on Bochs, task was to develop the incomplete modules of the OS", 
+            "Project 1 - Kernel Level Tasks - Synchronization, Alarm Clock, Priority Scheduler, Multilevel Feedback Queue Scheduler",
+            "Project 2 - User Level Tasks - System Call Infrastructure, Secured RW for executables, Argument Passing for Programs, Process synchronization"
+        ],
+        "link_url": "",
+        "project_url": "",
+        "members" : ["Joseph", "Rui Li"],
+        "mentors": ["Prof. Farshad Ghanei"]
+    },
+    { 
+        "title" : "Movie Genre Prediction with PySpark",
+        "date": "Apr - May, 2020",
+        "content" : [
+            "Movie Synopsis - Parsing and Processing, using various Feature modelling to represent Data like CountVec, Word2Vec, IDF ...",
+            "Using various ML classification algorithms for best accuracy",
+            "Kaggle Internal Competetion - Placed 2nd/90 teams in Public Leaderboard"
+        ],
+        "link_url": "",
+        "project_url": "",
+        "members" : ["Shathesh Kumar", "Venugopal Chinthappareddy"],
+        "mentors": ["Prof. Deen Dayal Mohan"]
+    },
+    {
+        "title" : "FinChain | Invoice Automation",
+        "date": "May, 2018",
+        "content" : [
+            "Problem Statement: Design a end-to-end Tracking System for all parties invloved in Supply-Chain of invoice", 
+            "Prototype developed Python Flask, ReactJS & MongoDB for tracking invoices and email alerting system for concerned parties on every step of progression",
+            "Experimented with Hyperledger Composer to build a similar system of invoice tracking and alert automation",
+            "IBM Business Hackathon 2018 - Intra IBM Competition - Winners"
+        ],
+        "link_url": "",
+        "project_url": "",
+        "members" : ["Sricharan Narayan", "Santhosh Kumar"],
+        "mentors": ["Supriya, IBM Sr. Manager", "Jayabharath, IBM Sr. Developer"]
+
+    },
+    {
+        "title" : "Hawkeye",
+        "date": "Feb - Apr, 2017",
+        "content" : [
+            "An image based object recognition for reconnaissance purposes from Aerial vehicles.", 
+            "The project was built with OpenCV, Python, Keras w/Theano",
+            "Embedded Solution, with image foreground extraction done on RaspberryPi and forwarded to server",
+            "Python Flask server proccesses incoming image and stores the identified object and timestamp",
+            "Image Classification done using Deep Learning with the pre-trained VGG16 model",
+            "Developed at Smart India Hackathon 2017 Finale."
+        ],
+        "link_url": "",
+        "project_url": "",
+        "members" : ["Nimalan Manimaran", "Vignesh Prasad", "Shreya Sridhar", "Aravind TJ", "Shiny K"],
+        "mentors": ["Prof. Bhaskar", "Prof. Subhatra"]
+    },
+    {
+        "title" : "Braillity (Braille Reality)",
+        "date": "Feb - Jun, 2016",
+        "content" : [
+            "Solution for the visullay challenged, where a person wears an embedded device with a camera, which processes images and feed to a braille pad", 
+            "The project was built with OpenCV, Python",
+            "The solution was to indentify object and process the outline of objects and feed it to a braille pad",
+            "The prototype developed was able to process shapes, outlines of objects but the Braille pad was only a visualization",
+            "Developed at Anna University, Titan Hackathon 2016 - Finalists"
+        ],
+        "link_url": "",
+        "project_url": "",
+        "members" : ["Nimalan Manimaran", "Vignesh Prasad"],
+        "mentors": ["Prof. Bhaskar"]
+    }
+]

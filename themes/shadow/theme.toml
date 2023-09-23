@@ -1,0 +1,11 @@
+name = "Shadow"
+license = "MIT"
+licenselink = ""
+description = ""
+homepage = "http://guhan62.github.io/"
+tags = ["blog"]
+features = []
+min_version = "0.40.1"
+
+[author]
+  name = "Hari Guhan"

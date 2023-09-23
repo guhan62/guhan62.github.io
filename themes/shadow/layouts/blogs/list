@@ -1,0 +1,15 @@
+{{ define "main" }}
+
+{{ range .Data.Pages.GroupByDate "2006"  }}
+<h3 style="margin-bottom: 0px">{{ .Key }}</h3>
+  {{ range .Pages }}
+  <div class="blog-list-items">
+    <span class="post-meta">{{ (.Date.Format (default "Jan 2" $.Site.Params.dateFormat)) }}</span>&nbsp;
+    <h4 class="post-list-item">
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </h4>
+   </div>
+  {{ end }}
+{{ end }}
+        
+{{ end }}

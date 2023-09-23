@@ -1,0 +1,11 @@
+<span class="cat-list">
+    {{ $taxo := "categories" }}
+    {{ with .Param $taxo }}
+    [
+        {{ range $index, $tag := . }}
+            {{- if gt $index 0 }}, {{ end -}}
+            <a href="{{ (printf "/%s/%s" $taxo $tag) }}">{{ $tag }}</a> 
+        {{ end }}
+    ]
+    {{ end }}
+</span>

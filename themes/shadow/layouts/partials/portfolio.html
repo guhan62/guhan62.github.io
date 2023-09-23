@@ -1,0 +1,81 @@
+<div class="gallery project">
+{{ range .Site.Data.projects }}
+<div class="card project">
+    <div class="card-header">
+        <h4><b>{{ .title }}</b></h4>
+        <p>{{ .date }}</p>
+    </div>
+    <div class="card-container">
+        <!-- Description -->
+        <ul>
+        {{ range .content }}
+            <li>{{ . }}</li>
+        {{ end }}
+        </ul>
+        <!-- End of Description -->
+    </div>
+
+        <!-- Mentors -->
+        {{ with .mentors }}
+            {{ if ge (len .) 1}}
+            <p class="card-title">Mentors</p>
+            <div class="card-team card-mentor">
+            {{ range . }}
+                <p>{{ . }}</p>
+            {{ end }}
+            </div>
+            {{ end }}
+        {{ end }}
+        <!-- End of Mentors -->
+
+        <!-- Members -->
+        {{ with .members }}
+            {{ if ge (len .) 1}}
+            <p class="card-title">Team</p>
+            <div class="card-team card-member">
+            {{ range . }}
+                {{ $name_split := split . " " }}
+                {{ if ge (len $name_split) 2 }}
+                    {{- $fl := first 1 (index $name_split 0) -}}
+                    {{- $sl := first 1 (index $name_split 1) -}}
+                    <a style="cursor: pointer;" title="{{ . }}">
+                        <p initials-letters="{{ $fl }}{{ $sl }}"></p>
+                    </a>
+                {{ else }}
+                    {{- $fl := first 1 (index $name_split 0) -}}
+                    <a style="cursor: pointer;" title="{{ . }}">
+                        <p initials-letters="{{ $fl }}"></p>
+                    </a>
+                {{ end }}
+            {{ end }}
+            </div>
+            {{ end }}
+        {{ end }}
+        <!-- End of Members -->
+
+    <!-- Buttons -->
+    <div class="card-buttons">
+        {{ if gt (len .link_url) 0 }}
+        <button class="button" onclick="opener({{ .link_url }})">
+            <svg class="svg-icon"><use xlink:href="/images/glyph.svg#link"></use></svg>
+                Link
+        </button>
+        {{ end }}
+        {{ if gt (len .project_url) 0 }}
+        <button class="button" onclick="opener({{ .project_url }})">
+            <svg class="svg-icon"><use xlink:href="/images/glyph.svg#github"></use></svg>
+            Source
+        </button>
+        {{ end }}
+    </div>
+    <!-- End of Buttons -->
+</div>
+{{ end }}
+<script type="text/javascript">
+    function opener(url) {
+        window.open(url, '_blank'); 
+        return false;
+    }
+</script>
+</div>
+

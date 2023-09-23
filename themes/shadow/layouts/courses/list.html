@@ -1,0 +1,10 @@
+{{ define "main" }}
+<header class="post-header">
+	<h2 class="p-name"> {{ .Params.title }}</h2>
+	<hr>
+</header>
+<div class="post-content">
+	{{ partial "coursework.html" . }}
+</div>
+
+{{ end }}

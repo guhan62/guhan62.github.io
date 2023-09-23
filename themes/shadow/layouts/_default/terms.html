@@ -1,0 +1,22 @@
+{{ define "main" }}
+
+{{ $data := .Data }}
+
+<div class="main-container">
+<!--Blog Container-->
+<section class="section">
+    <div class="taxo-container container">
+            <h2>{{ $data.Plural }}</h2>
+            <ul>
+                {{ range .Data.Terms.Alphabetical }}
+                <li>
+                  <a href="{{ "/" | relURL }}{{ $data.Plural | urlize }}/{{ .Name | urlize }}/">{{ .Name | humanize }}</a>
+                  {{/*To Sort the Categories based on their recent update*/}}
+                  <!--<time>{{((index .Pages.ByDate.Reverse 0).Date.Format (default "January 2, 2006" $.Site.Params.dateFormat))}}</time>-->
+                </li>
+                {{ end}}
+            </ul>
+    </div>
+  </section>
+</div>
+{{ end }}
