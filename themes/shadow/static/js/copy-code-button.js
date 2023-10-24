@@ -14,15 +14,16 @@ function addCopyButtons(clipboard) {
                 node.className == 'hl' ? 
                     domElements.push(
                         ... Object.entries(node.children)
-                        .filter( ([key, span]) => span.className != 'ln')
-                        .map( ([key, span]) => { return span.innerText })
+                        .filter( ([_, span]) => span.className != 'ln')
+                        .map( ([_, span]) => { return span.innerText })
                     ) : 
                     domElements.push(
                         node.innerText
                     );
             });
             var codeContent = domElements.join("");
-            clipboard.writeText(codeBlock.innerText).then(function () {
+
+            clipboard.writeText(codeContent).then(function () {
                 /* Chrome doesn't seem to blur automatically,
                    leaving the button in a focused state. */
                 button.blur();
@@ -34,6 +35,7 @@ function addCopyButtons(clipboard) {
                 }, 2000);
             }, function (error) {
                 button.innerText = 'Error';
+                console.error(error);
             });
         });
         var pre = codeBlock.parentNode;

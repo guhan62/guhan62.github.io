@@ -54,7 +54,7 @@ While the `Board` is reset after closure of application or `Reset Button` is cli
 
 #### Well enough of the Obvious, where does the real magic happen?  
 
-{{< highlight ts "linenos=inline,hl_lines=[1,2, "21-28"]" >}}
+```ts {linenos=inline,hl_lines=["1-2","21-27"]}
 const scoreboardBody: HTMLElement | any = document.getElementById("scoreboard_body")
 const boardCells: HTMLElement | any = document.querySelectorAll(".grid-cell")
 
@@ -85,7 +85,8 @@ class Board {
         });
     }
 }
-{{</highlight>}}
+```
+
 Now we have defined access with types, to access DOM elements, and we define a eventListener in the constructor phase, to access these elements designed by our code. 
 
 * **Line 2** - Gives access to all the grid-cells from the DOM, which are div with classes.

@@ -1,12 +1,11 @@
 {{ define "main" }}
   <header class="post-header">
-    <h1 class="post-title p-name">{{ .Title }}</h1>
+    <h1 class="p-name">{{ .Title }}</h1>
   </header>
   
   <div class="post-content">
       {{ if eq "categories" $.Data.Plural }}
       {{ end }}
-      <p>{{ . }}</p>
       {{ .Content }}
   </div>
 {{ end }}
