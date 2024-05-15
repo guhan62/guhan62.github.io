@@ -1,2 +1,4 @@
 public/
 resoures/
+*/__pycache__
+env/

@@ -24,7 +24,9 @@
         "9780735211308",
         "OL30550827M",
         "OL3310985M",
-        "OL37065885M"
+        "OL37065885M",
+        "OL25936656M",
+        "OL26765750M"
     ],
     "done": [
         "0671504061",
@@ -51,7 +53,9 @@
         "9780735211308",
         "OL30550827M",
         "OL3310985M",
-        "OL37065885M"
+        "OL37065885M",
+        "OL25936656M",
+        "OL26765750M"
     ],
     "books": [
         {
@@ -361,6 +365,30 @@
             "cover": "https://covers.openlibrary.org/b/id/12637101-M.jpg",
             "completed": "Jun, 2022",
             "rating": 2.5
+        },
+        {
+            "title": "Dark Matter",
+            "isbn": "OL25936656M",
+            "book_url": "https://openlibrary.org/books/OL25936656M/Dark_Matter",
+            "author_data": {
+                "url": "https://openlibrary.org/authors/OL1433920A/Blake_Crouch",
+                "name": "Blake Crouch"
+            },
+            "cover": "https://covers.openlibrary.org/b/id/7436634-M.jpg",
+            "completed": "Sep, 2023",
+            "rating": 4.5
+        },
+        {
+            "title": "The Silent Patient",
+            "isbn": "OL26765750M",
+            "book_url": "https://openlibrary.org/books/OL26765750M/The_Silent_Patient",
+            "author_data": {
+                "url": "https://openlibrary.org/authors/OL7471384A/Alex_Michaelides",
+                "name": "Alex Michaelides"
+            },
+            "cover": "https://covers.openlibrary.org/b/id/8415060-M.jpg",
+            "completed": "May, 2024",
+            "rating": 4.0
         }
     ]
 }
